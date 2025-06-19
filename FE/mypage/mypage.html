@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/F12Mall/FE/mypage/css/mypage.css" />
+    <title>mypage</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <canvas id="matrix"></canvas>
+      <div class="header">
+        <img
+          src="/F12_All.png"
+          alt="logo"
+          style="height: 50%; margin-left: 30px"
+        />
+        <div class="header-right">
+          <span>₩</span>
+          <span class="total-assets">320,000</span>
+          <img src="/headerImg.png" alt="헤더 사람모양" style="height: 23px" />
+        </div>
+      </div>
+      <div class="width">
+        <!-- section : left  -->
+        <div class="section-left">
+          <div class="container-profile border">
+            <div class="box-contents"></div>
+          </div>
+          <div class="container-ratio border">
+            <div>MyCoin Ratio</div>
+            <div class="box-ratio">
+              <div class="ratio-bar"></div>
+              <div class="coins-container">
+                <div class="coin-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- section : right -->
+        <div class="section-right">
+          <div class="container-information border">
+            <div>Coin Information</div>
+            <div class="box-main">
+              <div class="main-left"></div>
+              <div class="main-right"></div>
+            </div>
+          </div>
+          <div class="container-list-coins border">
+            <div>List of Coins</div>
+            <div class="box-main">
+              <div class="total-info"></div>
+              <div class="coins">
+                <div class="name-container"></div>
+                <div class="trade-detail-info"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- script -->
+    <script src="./js/background.js"></script>
+  </body>
 </html>
