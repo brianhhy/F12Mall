@@ -1,0 +1,14 @@
+@font-face {
+  font-family: KIMM_B;
+  src: url(./assets/fonts/KIMM_BOLD.TTF); /* 경로만 수정하기 */
+}
+
+@font-face {
+  font-family: KIMM_L;
+  src: url(./assets/fonts/KIMM_BOLD.TTF);
+}
+
+@font-face {
+  font-family: 7_SEGMENT;
+  src: url(./assets/fonts/7segment.ttf);
+}
