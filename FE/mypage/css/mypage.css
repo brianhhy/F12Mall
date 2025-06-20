@@ -1,0 +1,102 @@
+/* 공통 */
+.border {
+  border: 0.8px solid #00ff2f;
+}
+
+body {
+  background: black;
+  overflow: hidden;
+  margin: 0;
+}
+canvas {
+  margin: 0 auto;
+  position: absolute;
+  display: block;
+  z-index: -1;
+}
+
+#wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* header 부분 분리하기 */
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 45px;
+  background-color: #0000006b;
+  font-family: "KIMM_B";
+  font-size: 15px;
+  text-decoration: underline;
+  color: #fff;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.header-right .total-assets {
+  margin-right: 16px;
+}
+.header-right > img {
+  display: block;
+}
+/* header 부분 분리하기 */
+.width {
+  position: relative;
+  background-color: antiquewhite;
+  justify-content: center; /* 수정 코딩 */
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 100px);
+  padding: 1% 0px;
+  min-width: 375px; /* 아이폰 se 기준 */
+  margin: 58px auto;
+  font-family: "KIMM_B";
+}
+
+/* section : left  */
+.section-left {
+  position: relative;
+  background-color: brown;
+  width: 24%;
+  margin-right: 10px;
+  padding: 1% 1%;
+}
+
+.container-profile {
+  height: 64%;
+  margin-bottom: 30px;
+}
+
+.container-ratio {
+  height: 30%;
+}
+
+/* section : right  */
+.section-right {
+  padding: 1% 1%;
+  position: relative;
+  background-color: brown;
+  width: 66%;
+}
+.container-information {
+  width: 100%;
+  height: 38%;
+  margin-bottom: 60px;
+  margin-top: 3px;
+}
+.box-main {
+  margin-top: 8px;
+  background-color: black;
+}
+.container-list-coins {
+  height: 51%;
+}
