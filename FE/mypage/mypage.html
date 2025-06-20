@@ -3,25 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/F12Mall/FE/mypage/css/mypage.css" />
-    <link rel="stylesheet" href="/F12Mall/FE/fonts.css" />
+    <link rel="stylesheet" href="./css/mypage.css" />
+    <link rel="stylesheet" href="../fonts.css" />
     <title>mypage</title>
   </head>
   <body>
     <div id="wrapper">
-      <canvas id="matrix"></canvas>
-      <div class="header">
-        <img
-          src="/F12_All.png"
-          alt="logo"
-          style="height: 50%; margin-left: 30px"
-        />
-        <div class="header-right">
-          <span>₩</span>
-          <span class="total-assets">320,000</span>
-          <img src="/headerImg.png" alt="헤더 사람모양" style="height: 23px" />
-        </div>
-      </div>
+      <!-- <canvas id="matrix"></canvas> -->
+      <div id="include-header"></div>
       <div class="width">
         <!-- section : left  -->
         <div class="section-left">
@@ -62,5 +51,6 @@
     </div>
     <!-- script -->
     <script src="./js/background.js"></script>
+    <script src="../common/header/header.js"></script>
   </body>
 </html>
