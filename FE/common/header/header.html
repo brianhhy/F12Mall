@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .header {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      height: 45px;
+      background-color: #0000006b;
+      font-family: "KIMM_B";
+      font-size: 15px;
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      margin-right: 24px;
+    }
+
+    .header-right .total-assets {
+      margin-right: 16px;
+    }
+    .header-right > img {
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <img
+        src="../../assets/images/common/F12_All.png"
+        alt="logo"
+        style="height: 50%; margin-left: 30px"
+      />
+      <div class="header-right">
+        <span>₩</span>
+        <span class="total-assets">320,000</span>
+        <img
+          src="../../assets/images/common/headerImg.png"
+          alt="헤더 사람모양"
+          style="height: 23px"
+        />
+      </div>
+    </div>
+  </body>
 </html>
