@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let fPressCount = 0;
   
-  // F12 버튼 클릭 이벤트 리스너 추가
+  // 'F12 버튼' 클릭할 경우 카운트
   const f12Btn = document.getElementById('f12-btn');
   if (f12Btn) {
     f12Btn.addEventListener('click', () => {
@@ -10,12 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (fPressCount === 12) {
         document.cookie = "secretToken=my-secret";
-        window.location.href = 'http://localhost:3000/login';
+        window.location.href = '/login';
         fPressCount = 0;
       }
     });
   }
   
+  // 'f' 키 눌렀을 경우 카운트
   document.addEventListener('keydown', (event) => {
     if (event.key.toLowerCase() === 'f' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) {
       fPressCount++;
@@ -27,35 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (fPressCount === 12) {
       document.cookie = "secretToken=my-secret";
-      window.location.href = 'http://localhost:3000/login';
+      window.location.href = '/login';
       fPressCount = 0;
     }
   });
-  
-  // function handleSecretRouting() {
-  //   async function fetchSecret(path) {
-  //     const token = sessionStorage.getItem("secretToken");
-  //     if (!token) {
-  //       alert("먼저 인증이 필요합니다.");
-  //       return;
-  //     }
-  //     try {
-  //       const res = await fetch(path, {
-  //         method: "GET",
-  //         headers: {
-  //           "X-Secret-Token": token,
-  //         },
-  //       });
-  //       //const html = await res.text();
-  //       //document.getElementById("result").innerHTML = html;
-  //     } catch (err) {
-  //       console.error("요청 실패:", err);
-  //     }
-  //   }
-  //   const token = "my-secret";
-  //   sessionStorage.setItem('secretToken', token);
-  //   fetchSecret('/login');
-  //   window.location.href = 'http://localhost:3000/login';
-  // }
 }); 
 
