@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="wrapper">
-      <!-- <canvas id="matrix"></canvas> -->
+      <canvas id="matrix"></canvas>
       <div id="include-header"></div>
       <div class="width">
         <!-- section : left  -->
@@ -29,20 +29,30 @@
         </div>
         <!-- section : right -->
         <div class="section-right">
-          <div class="container-information border">
-            <div>Coin Information</div>
-            <div class="box-main">
+          <div class="container-information">
+            <div class="border right-title">Coin Information</div>
+            <div class="box-main border">
               <div class="main-left"></div>
               <div class="main-right"></div>
             </div>
           </div>
-          <div class="container-list-coins border">
-            <div>List of Coins</div>
-            <div class="box-main">
-              <div class="total-info"></div>
-              <div class="coins">
-                <div class="name-container"></div>
-                <div class="trade-detail-info"></div>
+          <div class="container-list-coins">
+            <div class="border right-title">List of Coins</div>
+            <div class="box-main border">
+              <div class="total-info">
+                <div><span id="total-coins">38</span><span>FIS</span></div>
+                <div>
+                  <span>₩</span><span id="total-coin-price">300,000</span>
+                </div>
+              </div>
+              <div class="coin-list">
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
+                <div class="coin-item"></div>
               </div>
             </div>
           </div>
@@ -50,7 +60,8 @@
       </div>
     </div>
     <!-- script -->
-    <script src="/mypage/js/background.js"></script>
-    <script src="/common/header/header.js"></script>
+    <script src="./js/background.js"></script>
+    <script src="../common/header/header.js"></script>
+    <script src="./component/coin.js"></script>
   </body>
 </html>
