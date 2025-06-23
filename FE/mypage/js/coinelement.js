@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.coin-item').forEach(target => {
-    fetch('./component/coin.html')
+  document.querySelectorAll('.coin-element').forEach(target => {
+    fetch('./component/coinelement.html')
       .then(res => res.text())
       .then(data => {
         target.innerHTML = data;
