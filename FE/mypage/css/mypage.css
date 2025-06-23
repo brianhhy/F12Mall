@@ -42,14 +42,14 @@ canvas {
   padding: 1% 0px;
   min-width: 375px; /* 아이폰 se 기준 */
   margin: 50px auto;
-  font-family: "KIMM_B";
+  font-family: 'KIMM_B';
   font-size: 12.5px;
 }
 
 /* section : left  */
 .section-left {
   position: relative;
-  background-color: brown;
+  background-color: #98989859;
   width: 24%;
   margin-right: 10px;
   padding: 1% 1%;
@@ -59,9 +59,35 @@ canvas {
   height: 64%;
   margin-bottom: 30px;
 }
-
+/* 코인 비율 영역 */
 .container-ratio {
   height: 30%;
+  background-color: #00000088;
+}
+.container-ratio > div:first-child {
+  font-size: 12px;
+  height: 25px;
+  padding: 2px 5px;
+  text-align: left;
+  line-height: 25px;
+  color: #00ff00;
+  border-bottom: 0.8px solid #00ff2f;
+}
+.box-ratio-bar {
+  width: 90%;
+  height: 28px;
+  background-color: #000;
+  margin: 25px auto;
+  border-radius: 25px;
+  border: 1.2px solid #ffbb00;
+}
+.box-coins {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 23%;
+
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* section : right  */
@@ -149,7 +175,7 @@ span:nth-child(6) {
   height: 48px;
   background-color: black;
   border: 1px solid #00ff2f;
-  font-family: "7_SEGMENT";
+  font-family: '7_SEGMENT';
   text-align: center;
   line-height: 48px;
   color: #ff1d1d;
