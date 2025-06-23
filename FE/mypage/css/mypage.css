@@ -2,6 +2,16 @@
 .border {
   border: 0.8px solid #00ff2f;
 }
+
+.right-title {
+  margin-bottom: 10px;
+  width: 120px;
+  padding: 4px 0;
+  text-align: center;
+  font-size: 10px;
+  color: #00ff2f;
+}
+
 /* body */
 body {
   background: black;
@@ -23,7 +33,7 @@ canvas {
 
 .width {
   position: relative;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   justify-content: center; /* 수정 코드 */
   display: flex;
   width: 100%;
@@ -32,6 +42,7 @@ canvas {
   min-width: 375px; /* 아이폰 se 기준 */
   margin: 58px auto;
   font-family: "KIMM_B";
+  font-size: 12.5px;
 }
 
 /* section : left  */
@@ -57,18 +68,44 @@ canvas {
   padding: 1% 1%;
   position: relative;
   background-color: brown;
+  color: #fff;
   width: 66%;
 }
 .container-information {
   width: 100%;
   height: 38%;
-  margin-bottom: 60px;
   margin-top: 3px;
 }
-.box-main {
+.container-list-coins {
+  position: relative;
+  height: 57%;
+}
+.container-list-coins .box-main {
+  position: relative;
   margin-top: 8px;
+  height: 90%;
   background-color: black;
 }
-.container-list-coins {
-  height: 51%;
+
+.box-main .total-info {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  padding: 10px 8px;
+}
+.total-info div:nth-child(2) {
+  color: #ff9d00;
+  margin-left: 10px;
+}
+
+.box-main .coin-list {
+  display: flex;
+  width: 100%;
+  padding-left: 5%;
+  height: 86%;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+  overflow: scroll;
+  box-sizing: border-box;
 }
