@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F12_All-Trade</title>
-    <link rel="stylesheet" href="./css/trade.css">
-    <script src="./js/trade.js"></script>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="section-header">
-            Header
-        </div>
-        <div class="section-main">
-            <div class="section-left">
-                <div class="container-left-top">
-                    <div class="container-profile">
-                        container-profile
-                    </div>
-                    <div class="container-live">
-                        container-live
-                    </div>
+    <link rel="stylesheet" href="/trade/css/trade.css" />
+    <link rel="stylesheet" href="/trade/css/background.css" />
+    <link rel="stylesheet" href="/fonts.css" />
+    <script src="/trade/js/trade.js"></script>
+  </head>
+  <body>
+    <div id="trade-background"></div>
+
+    <div id="wrapper">
+      <div id="include-header"></div>
+      <div class="width">
+        <div class="section-left">
+          <div>
+            <div class="container-profile">
+              <div class="box-profile-image">
+                <img src="/assets/images/main/JW.png" alt="Profile Image" />
+              </div>
+              <div class="box-coin-info">
+                <div class="coin-info-top">
+                  <span class="coin-name">[COIN_NAME]</span>
+                  <span class="user-name">[USER_NAME]</span>
                 </div>
-                <div class="container-chart">
-                    container-chart
+                <div class="coin-info-middle">
+                  <p class="coin-bio">
+                    [COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO]
+                  </p>
                 </div>
+                <div class="coin-info-bottom">
+                  <button class="coin-detail-btn">
+                    <span>상세 정보 ></span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="section-right">
-                <div class="container-interface">
-                    container-interface
-                </div>
-                <div class="container-orderbook">
-                    container-orderbook
-                </div>
-            </div>
+            <div class="container-live">container-live</div>
+          </div>
+          <div class="container-chart">container-chart</div>
         </div>
+        <div class="section-right">
+          <div class="container-interface">container-interface</div>
+          <div class="container-orderbook">container-orderbook</div>
+        </div>
+      </div>
     </div>
-</body>
+    <!-- script -->
+    <script src="/trade/js/background.js"></script>
+    <script src="/common/header/header.js"></script>
+  </body>
 </html>
