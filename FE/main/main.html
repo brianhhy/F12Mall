@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
-    <link rel="stylesheet" href="/FE/fonts.css">
-    <link rel="stylesheet" href="/FE/main/css/main.css">
+    <link rel="stylesheet" href="../fonts.css">
+    <link rel="stylesheet" href="../main/css/main.css">
 </head>
 
 <body>
-    <iframe src="./CyberBackground2.html" frameborder="0"
+    <iframe src="../common/CyberBackground/CyberBackground.html" frameborder="0"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></iframe>
     <div class="wrapper">
         <div class="include-header"></div>
@@ -89,52 +89,164 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Banner -->
+                <!-- Carousel -->
                 <div class="container-right">
-                    <div class="box-banner">
-                        <div class="banner-header">
-                            <h2 class="banner-title">Top 5 Coin</h2>
-                        </div>
-                        <div class="banner-carousel">
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <div class="carousel-cards">
-                                        <!-- coin card 1 -->
-                                        <div class="carousel-card">
-                                            <div class="carousel-thumbnail">
-                                                <img src="../assets/images/JH.png" alt="코인 1번 프사">
-                                            </div>
-                                            <div class="carousel-info">
-                                                <div class="info-coin-name">JH코인</div>
-                                                <div class="info-author">허재환</div>
-                                                <div class="info-role">Backend Engineer</div>
-                                                <div class="info-change up">
-                                                    ▲ 500,000 <span class="change-percent">(+5.00%)</span>
-                                                </div>
-                                                <div class="info-price">
-                                                    <span class="price-icon">₩</span>
-                                                    <span class="price-amount">10,000,000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- coin card 2 -->
-                                        <!-- coin card 3 -->
-                                        <!-- coin card 4 -->
-                                        <!-- coin card 5 -->
+                    <div class="box-carousel-header">
+                        <h2 class="carousel-title">Top 5 Coin</h2>
+                    </div>
+                    <div class="box-carousel-body">
+                        <div class="carousel-cap-cards">
+                            <!-- coin card 1 -->
+                            <div class="cap-card">
+                                <div class="card-top">
+                                    <div class="card-label">
+                                        <span class="card-coin-name">JH코인</span>
+                                        <span class="card-author">허재환</span>
                                     </div>
                                 </div>
-                                <!-- <div class="carousel-slide">
-                                    <img src="" alt="광고1">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="" alt="광고2">
-                                </div> -->
-                                <div class="carousel-indicator">
-                                    <span class="dot active"></span>
-                                    <span class="dot"></span>
-                                    <span class="dot"></span>
+                                <div class="card-bot">
+                                    <div class="card-info">
+                                        <div class="card-role">Backend Engineer</div>
+                                        <img src="../assets/images/main/JH.png" alt="시총 프사">
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="card-change up">
+                                            500,000 <span class="change-percent">(+5.00%)</span>
+                                        </div>
+                                        <div class="price-icon">
+                                            <svg class="icon-svg" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            </svg>
+                                            <span class="price-amount">10,000,000</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- coin card 2 -->
+                            <div class="cap-card">
+                                <div class="card-top">
+                                    <div class="card-label">
+                                        <span class="card-coin-name">JH코인</span>
+                                        <span class="card-author">허재환</span>
+                                    </div>
+                                </div>
+                                <div class="card-bot">
+                                    <div class="card-info">
+                                        <div class="card-role">Backend Engineer</div>
+                                        <img src="../assets/images/main/JH.png" alt="시총 프사">
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="card-change up">
+                                            500,000 <span class="change-percent">(+5.00%)</span>
+                                        </div>
+                                        <div class="price-icon">
+                                            <svg class="icon-svg" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            </svg>
+                                            <span class="price-amount">10,000,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- coin card 3 -->
+                            <div class="cap-card">
+                                <div class="card-top">
+                                    <div class="card-label">
+                                        <span class="card-coin-name">JH코인</span>
+                                        <span class="card-author">허재환</span>
+                                    </div>
+                                </div>
+                                <div class="card-bot">
+                                    <div class="card-info">
+                                        <div class="card-role">Backend Engineer</div>
+                                        <img src="../assets/images/main/JH.png" alt="시총 프사">
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="card-change up">
+                                            500,000 <span class="change-percent">(+5.00%)</span>
+                                        </div>
+                                        <div class="price-icon">
+                                            <svg class="icon-svg" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            </svg>
+                                            <span class="price-amount">10,000,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- coin card 4 -->
+                            <div class="cap-card">
+                                <div class="card-top">
+                                    <div class="card-label">
+                                        <span class="card-coin-name">JH코인</span>
+                                        <span class="card-author">허재환</span>
+                                    </div>
+                                </div>
+                                <div class="card-bot">
+                                    <div class="card-info">
+                                        <div class="card-role">Backend Engineer</div>
+                                        <img src="../assets/images/main/JH.png" alt="시총 프사">
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="card-change up">
+                                            500,000 <span class="change-percent">(+5.00%)</span>
+                                        </div>
+                                        <div class="price-icon">
+                                            <svg class="icon-svg" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            </svg>
+                                            <span class="price-amount">10,000,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- coin card 5 -->
+                            <div class="cap-card">
+                                <div class="card-top">
+                                    <div class="card-label">
+                                        <span class="card-coin-name">JH코인</span>
+                                        <span class="card-author">허재환</span>
+                                    </div>
+                                </div>
+                                <div class="card-bot">
+                                    <div class="card-info">
+                                        <div class="card-role">Backend Engineer</div>
+                                        <img src="../assets/images/main/JH.png" alt="시총 프사">
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="card-change up">
+                                            500,000 <span class="change-percent">(+5.00%)</span>
+                                        </div>
+                                        <div class="price-icon">
+                                            <svg class="icon-svg" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            </svg>
+                                            <span class="price-amount">10,000,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="carousel-banner">
+                            <img src="" alt="광고1">
+                        </div>
+                        <div class="carousel-banner">
+                            <img src="" alt="광고2">
+                        </div> -->
+                        <div class="carousel-indicator">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
                         </div>
                     </div>
                 </div>
@@ -177,7 +289,7 @@
                         <!-- card view 1 -->
                         <div class="card-item">
                             <div class="card-thumbnail">
-                                <img src="../assets/images/dogsCoin.png" alt="카드 1번 프사">
+                                <img src="../assets/images/main/dogeCoin.png" alt="카드 1번 프사">
                             </div>
                             <div class="card-info">
                                 <div class="info-coin-name">도그스코인</div>
