@@ -1,0 +1,174 @@
+.container-interface {
+  background-color: rgba(15, 15, 15, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.container-interface .box-type-controller {
+  display: flex;
+  width: 100%;
+}
+
+.box-type-controller > button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'KIMM_B';
+}
+
+.box-type-controller > button.active {
+  color: #00FF2F;
+  border-top: 0.1rem solid #00FF2F;
+  border-right: 0.1rem solid #00FF2F;
+  border-left: 0.1rem solid #00FF2F;
+}
+
+.box-type-controller > button.deactive {
+  color: #ffffff;
+  border-bottom: 0.1rem solid #00FF2F;
+}
+
+.container-interface > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.8rem;
+  border-right: 0.1rem solid #00FF2F;
+  border-bottom: 0.1rem solid #00FF2F;
+  border-left: 0.1rem solid #00FF2F;
+}
+
+.box-order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-order-item label {
+  flex: 1;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: 'KIMM_B';
+}
+
+.box-order-item.available > span {
+  color: #959595;
+  font-family: 'KIMM_B';
+  font-size: 0.7rem;
+}
+
+.box-order-item .input-group {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #000000;
+  border: 0.05rem solid #00ff2f;
+  color: #00ff2f;
+  font-family: 'KIMM_B';
+  padding: 0.4rem;
+  box-shadow: 0.2rem 0.2rem 0.1rem rgba(102, 255, 102, 0.3);
+}
+
+.box-order-item .input-group > span {
+  font-size: 0.7rem;
+  margin-left: 0.2rem;
+}
+
+.box-order-item .input-group > input {
+  flex: 1;
+  font-size: 0.8rem;
+  text-align: right;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: #000000;
+  color: #00ff2f;
+  font-family: 'KIMM_B';
+}
+
+.box-order-item .quick-orders {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding-top: 0.15rem;
+}
+
+.box-order-item .quick-orders > button {
+  flex: 1;
+  background-color: #ff9d00;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'KIMM_B';
+  font-size: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.box-order-item .quick-orders > button:hover {
+  background-color: #ffc05b;
+}
+
+.box-order-item.total-price {
+  padding-top: 0.5rem;
+}
+
+.box-fee-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.box-fee-info > span {
+  font-size: 0.5rem;
+  color: #f0f0f0;
+  font-family: 'KIMM_L';
+}
+
+.container-interface > div:nth-child(2) .box-order-btn {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.box-order-btn > button {
+  flex: 1;
+  padding: 0.7rem 0;
+  border: none;
+  font-size: 0.9rem;
+  font-family: 'KIMM_B';
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.box-order-btn > .reset-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.box-order-btn > .reset-btn:hover {
+  background-color: #5a6268;
+}
+
+.buy-mode .box-order-btn > .order-btn {
+  background-color: #E01200;
+  color: white;
+}
+
+.buy-mode .box-order-btn > .order-btn:hover {
+  background-color: #c82333;
+}
+
+.sell-mode .box-order-btn > .order-btn {
+  background-color: #1376EE;
+  color: white;
+}
+
+.sell-mode .box-order-btn > .order-btn:hover {
+  background-color: #0069d9;
+}

@@ -6,6 +6,7 @@
     <title>F12_All-Trade</title>
     <link rel="stylesheet" href="/trade/css/trade.css" />
     <link rel="stylesheet" href="/trade/css/background.css" />
+    <link rel="stylesheet" href="/trade/css/container-interface.css" />
     <link rel="stylesheet" href="/fonts.css" />
     <script src="/trade/js/trade.js"></script>
   </head>
@@ -23,12 +24,12 @@
               </div>
               <div class="box-coin-info">
                 <div class="coin-info-top">
-                  <span class="coin-name">[COIN_NAME]</span>
-                  <span class="user-name">[USER_NAME]</span>
+                  <span class="coin-name">{COIN_NAME}</span>
+                  <span class="user-name">{USER_NAME}</span>
                 </div>
                 <div class="coin-info-middle">
                   <p class="coin-bio">
-                    [COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO][COIN_BIO]
+                    {COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}{COIN_BIO}
                   </p>
                 </div>
                 <div class="coin-info-bottom">
@@ -43,7 +44,63 @@
           <div class="container-chart">container-chart</div>
         </div>
         <div class="section-right">
-          <div class="container-interface">container-interface</div>
+          <div class="container-interface buy-mode">
+            <div class="box-type-controller">
+              <button class="sell-type-btn active">
+                <span>매수</span>
+              </button>
+              <button class="buy-type-btn deactive">
+                <span>매도</span>
+              </button>
+            </div>
+            <div>
+              <div class="box-order-item available">
+                <label>주문 가능</label>
+                <span>₩<span id="money">1311000</span></span>
+              </div>
+              <div class="box-order-item quantity">
+                <label>주문 수량</label>
+                <div class="input-group">
+                  <input id="order_fis" type="text" placeholder="0" />
+                  <span>FIS</span>
+                </div>
+              </div>
+              <div class="box-order-item order-price">
+                <label>매수 가격</label>
+                <div class="input-group">
+                  <input id="order-price" type="text" placeholder="0" />
+                  <span>원</span>
+                </div>
+              </div>
+              <div class="box-order-item">
+                <label></label>
+                <div class="quick-orders">
+                  <button value="10">10%</button>
+                  <button value="20">20%</button>
+                  <button value="50">50%</button>
+                  <button value="100">100%</button>
+                </div>
+              </div>
+              <div class="box-order-item total-price">
+                <label>주문 총액</label>
+                <div class="input-group">
+                  <input id="order-total" type="text" placeholder="0" readonly />
+                  <span>원</span>
+                </div>
+              </div>
+              <div class="box-fee-info">
+                <span>수수료 <span id="fee-rate">0.05</span>%</span>
+              </div>
+              <div class="box-order-btn">
+                <button class="reset-btn">
+                  <span>초기화</span>
+                </button>
+                <button class="order-btn">
+                  <span id="order-type">매수</span>
+                </button>
+              </div>
+            </div>
+          </div>
           <div class="container-orderbook">container-orderbook</div>
         </div>
       </div>
