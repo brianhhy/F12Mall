@@ -1,42 +1,3 @@
-.container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    gap: 2rem;
-    font-family: 'KIMM_B';
-    text-shadow: 
-        0 0 10px rgba(51, 255, 51, 0.8),
-        0 0 20px rgba(51, 255, 51, 0.6);
-    letter-spacing: 0.1em;
-}
-
-@keyframes fadeInTitle {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.title {
-    text-align: center;
-    font-size: 6vw;
-    color: #fff;
-    z-index: 90;
-    opacity: 0;
-    margin: 0;
-    animation: fadeInTitle 1s ease-out forwards 0.5s;
-    margin-bottom: 1.5rem;
-}
-
 @keyframes glitch {
     0% {
         transform: skew(0deg);
@@ -98,41 +59,15 @@
     }
 }
 
-.sub-title {
-    text-align: center;
-    font-size: 2vw;
-    color: #fff;
-    z-index: 90;
-    opacity: 0;
-    position: relative;
-    margin: 0;
-    animation: 
-        fadeInTitle 1s ease-out forwards,
-        glitch 3.5s infinite,
-        glitchText 7s infinite;
-}
-
-.sub-title::before,
-.sub-title::after {
-    content: 'Hello World';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    clip: rect(0, 900px, 0, 0);
-}
-
-.sub-title::before {
-    left: 2px;
-    text-shadow: -2px 0 #00ff00;
-    animation: glitch-2 3s infinite linear alternate-reverse;
-}
-
-.sub-title::after {
-    left: -2px;
-    text-shadow: 2px 0 #00ff00;
-    animation: glitch-1 2.5s infinite linear alternate-reverse;
+@keyframes fadeInTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes glitch-1 {
@@ -194,62 +129,158 @@
 
 @keyframes glitch-2 {
     0% {
-        clip: rect(36px, 900px, 89px, 0);
+        clip: rect(3px, 900px, 94px, 0);
     }
     5.8823529412% {
-        clip: rect(56px, 900px, 79px, 0);
+        clip: rect(7px, 900px, 64px, 0);
     }
     11.7647058824% {
-        clip: rect(67px, 900px, 87px, 0);
+        clip: rect(10px, 900px, 87px, 0);
     }
     17.6470588235% {
-        clip: rect(84px, 900px, 88px, 0);
+        clip: rect(14px, 900px, 98px, 0);
     }
     23.5294117647% {
-        clip: rect(22px, 900px, 77px, 0);
+        clip: rect(32px, 900px, 67px, 0);
     }
     29.4117647059% {
-        clip: rect(16px, 900px, 77px, 0);
+        clip: rect(26px, 900px, 67px, 0);
     }
     35.2941176471% {
-        clip: rect(46px, 900px, 87px, 0);
+        clip: rect(56px, 900px, 97px, 0);
     }
     41.1764705882% {
-        clip: rect(14px, 900px, 97px, 0);
+        clip: rect(24px, 900px, 87px, 0);
     }
     47.0588235294% {
-        clip: rect(35px, 900px, 78px, 0);
+        clip: rect(45px, 900px, 88px, 0);
     }
     52.9411764706% {
-        clip: rect(21px, 900px, 99px, 0);
+        clip: rect(31px, 900px, 89px, 0);
     }
     58.8235294118% {
-        clip: rect(24px, 900px, 79px, 0);
+        clip: rect(34px, 900px, 89px, 0);
     }
     64.7058823529% {
-        clip: rect(25px, 900px, 88px, 0);
+        clip: rect(35px, 900px, 78px, 0);
     }
     70.5882352941% {
-        clip: rect(22px, 900px, 79px, 0);
+        clip: rect(12px, 900px, 89px, 0);
     }
     76.4705882353% {
-        clip: rect(33px, 900px, 77px, 0);
+        clip: rect(23px, 900px, 67px, 0);
     }
     82.3529411765% {
-        clip: rect(33px, 900px, 88px, 0);
+        clip: rect(43px, 900px, 78px, 0);
     }
     88.2352941176% {
-        clip: rect(24px, 900px, 97px, 0);
+        clip: rect(34px, 900px, 87px, 0);
     }
     94.1176470588% {
-        clip: rect(35px, 900px, 81px, 0);
+        clip: rect(98px, 900px, 86px, 0);
     }
     100% {
-        clip: rect(31px, 900px, 79px, 0);
+        clip: rect(6px, 900px, 84px, 0);
     }
 }
 
-.login-form {
+@keyframes cyber-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(25px) skewY(3deg);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateY(0) skewY(0deg);
+    }
+}
+
+@keyframes content-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h3{
+    color: #00ff2f;
+    font-family: 'KIMM_B';
+    font-size: 20px;
+    text-align: left;
+    border-radius: 10px;
+    line-height: 40px;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    gap: 2rem;
+    font-family: 'KIMM_B';
+    text-shadow: 
+        0 0 10px rgba(51, 255, 51, 0.8),
+        0 0 20px rgba(51, 255, 51, 0.6);
+    letter-spacing: 0.1em;
+}
+
+.container > .title {
+    text-align: center;
+    font-size: 6vw;
+    color: #fff;
+    z-index: 90;
+    opacity: 0;
+    margin: 0;
+    animation: fadeInTitle 1s ease-out forwards 0.5s;
+    margin-bottom: 1.5rem;
+}
+
+.container > .sub-title {
+    text-align: center;
+    font-size: 2vw;
+    color: #fff;
+    z-index: 90;
+    opacity: 0;
+    position: relative;
+    margin: 0;
+    animation: 
+        fadeInTitle 1s ease-out forwards,
+        glitch 3.5s infinite,
+        glitchText 7s infinite;
+}
+
+.sub-title::before,
+.sub-title::after {
+    content: 'Hello World';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.sub-title::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ff00;
+    animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+.sub-title::after {
+    left: -2px;
+    text-shadow: 2px 0 #00ff00;
+    animation: glitch-1 2.5s infinite linear alternate-reverse;
+}
+
+.container >.login-form {
     width: 100%;
     max-width: 30rem;
     display: flex;
@@ -259,7 +290,7 @@
     animation: fadeInTitle 1s ease-out forwards 1s;
 }
 
-.input-group {
+.container >.login-form >.input-group {
     display: flex;
     align-items: center;
     height: 2rem;
@@ -272,30 +303,38 @@
 }
 
 .input-group label {
-    color: #ffffff;
+    color: #00ff2f;
     min-width: 100px;
     font-size: 0.7rem;
     text-align: center;
     flex-shrink: 0;
 }
 
-.login-form input {
+.input-group input {
     flex: 1;
+    color: #00ff2f;
     background: transparent;
     border: none;
-    color: #fff;
-    font-size: 1rem;
-    outline: none;
-    padding: 0;
     font-family: 'KIMM_B';
-    text-align: left;
+    font-size: 0.8rem;
+    padding: 0.2rem;
 }
 
-.login-form input::placeholder {
+.input-group input:active{
+    background: #000000;
+}
+
+.input-group input:focus {
+    outline: none;
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.input-group input::placeholder {
     color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
 }
 
-.login-form button {
+.container > .login-form button {
     width: 12rem;
     height: 2.5rem;
     border: 1px solid #00ff00;
@@ -349,7 +388,7 @@
         inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 회원가입 관련(media query제외)*/
+/* 회원가입(media query제외)   left-signup 먼저*/
 
 .hidden {
     display: none !important;
@@ -358,40 +397,251 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    flex-wrap: nowrap;
     margin-top: 40px;
 }
 
-/* min-height 추후 변경*/
 .container-left-signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
-    min-height: 800px;
+    min-width: 600px;
+    height: auto;
     background-color: #222222;
-    opacity: 0.7;
+    opacity: 0;
     padding: 2rem;
     z-index: 100;
     position: relative;
+    animation: cyber-fade-in-up 0.7s ease-out forwards 0.2s;
+}
+
+.container-left-signup > .box-logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'KIMM_B';
+    font-size: 20px;
+    color: white;
+}
+  
+.container-left-signup >.box-logo > .f12-key {
+    position: relative;
+    width: 60px;
+    height: 25px;
+    background-color: #e9ecef;
+    color: #000000;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    transform: rotateX(20deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: 'KIMM_B';
+}
+  
+.f12-key:hover {
+    transform: rotateX(25deg) translateY(4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    background: #ffffff;
+    cursor: pointer;
+}
+  
+.f12-key:active {
+    transform: rotateX(30deg) translateY(6px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to top, #222, #444);
 }
 
 
-.container-right-signup {
+.container-left-signup > .box-left-signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
-    min-height: 800px;
-    background-color: #222222;
-    opacity: 0.7;
-    padding: 2rem;
-    z-index: 100;
+    width: 100%;
+    opacity: 0;
+    animation: content-fade-in 0.7s ease-out forwards 0.7s;
 }
 
-.back-btn {
+.box-left-signup > .profile {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #222222;
+    border: 2px solid #697077;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile > .profile-input{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-input:hover{
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.profile > .profile-edit-icon {
+    position: absolute;
+    bottom: -5px;
+    right: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #222222;
+    border: 2px solid #00ff2f;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-edit-icon:hover {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.profile-edit-icon svg {
+    transition: all 0.3s ease;
+}
+
+.profile-edit-icon:hover svg {
+    fill: #00ff2f;
+}
+
+.input-wrap {
+    position: relative;
+    width: 300px;
+    margin: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-wrap input {
+    width: 100%;
+    height: 40px;
+    color: #00ff2f;
+    background-color: #222222;
+    border-radius: 10px;
+    border: 1px solid #697077;
+    padding-left: 40px;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: 'KIMM_B';
+}
+
+.input-wrap > .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.input-wrap > .id-input{
+    max-width: 200px;
+}
+
+.input-wrap > .id-check-btn{
+    width: 100px;
+    margin-right: 5px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #222222;
+    border: 1px solid #00ff2f;
+    color: #00ff2f;
+    font-family: 'KIMM_B';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.id-check-btn:hover{
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.input-wrap input::placeholder{
+    font-family: 'KIMM_B';
+    color: #697077;
+    font-size: 20px;
+    text-align: left;
+    border-radius: 10px;
+    line-height: 40px;
+}
+
+.input-wrap input:focus{
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    background-color: #000012;
+    color: #00FF2F;
+    font-family: 'KIMM_B';
+    box-shadow: 0 4px 4px #00FF2F;
+    background-color: #333333;
+}
+
+.input-wrap input:focus::placeholder {
+    color: #00ff2fa3;
+}
+
+.input-wrap .password-input{
+    color: #fff;
+}
+
+.box-left-signup > .bio-wrap > textarea{
+    width: 300px;
+    height: 80px;
+    color: #00ff2f;
+    background-color: #222222;
+    border-radius : 10px;
+    border : 1px solid #697077;
+    resize: none;
+    font-family: 'KIMM_B';
+    font-size: 20px;
+    text-align: left;
+    border-radius: 10px;
+    line-height: 40px;
+}
+
+textarea::placeholder{
+    font-family: 'KIMM_B';
+    color: #697077;
+    font-size: 20px;
+    text-align: left;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+textarea:focus{
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    background-color: #000012;
+    color: #00FF2F;
+    font-family: 'KIMM_B';
+    box-shadow: 0 4px 4px #00FF2F;
+    background-color: #333333;
+}
+
+textarea:focus::placeholder{
+    color: #00ff2fa3;
+}
+
+.next-btn {
     width: 12rem;
     height: 2.5rem;
     border: 1px solid #00ff00;
@@ -405,7 +655,282 @@
     margin-top: 1rem;
 }
 
-.back-btn:hover {
+.next-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.box-signup-form > .signup-btn{
+    width: 12rem;
+    height: 2.5rem;
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    background: transparent;
+    color: #00ff00;
+    font-family: 'KIMM_B';
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.signup-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+/* 여기서부터 container-right-signup */
+
+.container-right-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 600px;
+    height: auto;
+    background-color: #222222;
+    z-index: 100;
+    position: relative;
+    animation: cyber-fade-in-up 0.7s ease-out forwards;
+}
+
+.container-right-signup > .box-right-signup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    animation: content-fade-in 0.7s ease-out forwards 0.7s;
+    top: 0;
+}
+
+.middle-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: stretch;
+}
+
+.left-column {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 300px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    justify-content: center;
+}
+
+.tech-stack{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box-signup-form > .tech-stack > .about-tech-stack {
+    padding: 1rem;
+}
+
+.about-tech-stack > .tech-stack-title{
+    font-size: 20px;
+    color: #00ff2f;
+    font-family: 'KIMM_B';
+}
+
+.about-tech-stack > .stack-max{
+    font-size: 12px;
+    color: #697077;
+}
+
+.tech-stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.tech-stack-list > .tech-stack-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 200px;
+    max-height: 25px;
+    border-radius: 30px;
+    font-size: 11px;
+    background-color: #222222;
+    color: #697077;
+    border: 1px solid #697077;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.tech-stack-item input[type="checkbox"] {
+    display: none;
+}
+
+.tech-stack-item:has(input[type="checkbox"]:checked) {
+    border: 2px solid #00ff2f;
+    color: #00ff2f;
+    background: #111;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    font-weight: bold;
+}
+
+.tech-stack-item > span{
+    font-size: 14px;
+}
+
+.resume {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    max-height: 140px;
+}
+
+.certification {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    max-height: 140px;
+}
+
+.file-upload {
+    width: 250px;
+    height: 80px;
+    border: 2px dashed #697077;
+    border-radius: 10px;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.file-upload:hover {
+    border-color: #00ff2f;
+    background-color: rgba(0, 255, 47, 0.1);
+}
+
+.right-column > .link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link > .input-wrap{
+    width: 80%;
+}
+
+.link > .input-wrap > .input-icon{
+    width: 20px;
+}
+
+th{
+    color: #D5F0A4;
+}
+
+.form-cell input{
+    background: transparent;
+    border: 1px solid #697077;
+    color: #00ff2f;
+    font-family: 'KIMM_B';
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.form-cell input:focus {
+    outline: none;
+    border-color: #00ff2f;
+    background: rgba(0, 255, 47, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.form-cell input::placeholder {
+    color: #697077;
+    font-family: 'KIMM_B';
+    font-size: 14px;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group .radio-item label {
+    color: #697077;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: 'KIMM_B';
+    font-size: 14px;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    color: #00ff2f;
+    background: rgba(0, 255, 47, 0.1);
+    border: 1px solid #00ff2f;
+}
+
+.radio-group .radio-item label:hover {
+    color: #00ff2f;
+    background: rgba(0, 255, 47, 0.05);
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+}
+
+.file-upload-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.file-upload-label:hover svg {
+    stroke: #00ff2f;
+}
+
+.signup-btn {
+    width: 15rem;
+    height: 3rem;
+    border: 1px solid #00ff2f;
+    border-radius: 10px;
+    background: transparent;
+    color: #00ff00;
+    font-family: 'KIMM_B';
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.signup-btn:hover {
     background: rgba(0, 255, 0, 0.1);
 }
 
@@ -423,9 +948,3 @@
         font-size: 3vw;
     }
 }
-
-
-
-
-
-
