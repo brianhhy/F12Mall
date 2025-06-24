@@ -18,9 +18,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example"))//Swagger API 문서로 만들기 원하는 basePackage 경로
-                //.paths(PathSelectors.ant("/api/**"))    //URL 경로를 지정하여 해당 URL에 해당하는 요청만 SWAGGER로 만듦
-                .paths(PathSelectors.any())    //URL 경로를 지정하여 해당 URL에 해당하는 요청만 SWAGGER로 만듦
+                .apis(RequestHandlerSelectors.basePackage("com.avgmax"))
+                .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
 

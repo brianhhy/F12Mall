@@ -55,6 +55,14 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>5.8.0</version> <!-- 사용 중인 Spring 버전에 맞춰 조절 -->
+		</dependency>
+
+
 		<!-- file upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
