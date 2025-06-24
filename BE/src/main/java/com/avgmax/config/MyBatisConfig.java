@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@MapperScan("com.example.mapper")
+@MapperScan({"com.avgmax.user.mapper", "com.avgmax.trade.mapper"})
 @PropertySource(value = "classpath:application.yml", factory = YamlPropertySourceFactory.class)
 public class MyBatisConfig {
     

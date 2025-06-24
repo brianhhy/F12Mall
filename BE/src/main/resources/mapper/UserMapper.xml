@@ -2,4 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.avgmax.user.mapper.UserMapper">
 
+    <insert id="insert" parameterType="com.avgmax.user.domain.User">
+        INSERT INTO user (NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY, CREATED_AT, UPDATED_AT) 
+        VALUES (#{name}, #{email}, #{userName}, #{password}, #{imageUrl}, #{money}, #{CREATED_AT}, #{UPDATED_AT})
+    </insert>
+
+    <select id="selectByUsername" parameterType="String" resultType="com.avgmax.user.domain.User">
+        SELECT NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
+        FROM user 
+        WHERE USERNAME == #{username}
+    </select>
+    
 </mapper>
