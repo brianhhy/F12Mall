@@ -6,9 +6,16 @@
     <title>F12_All-Trade</title>
     <link rel="stylesheet" href="/trade/css/trade.css" />
     <link rel="stylesheet" href="/trade/css/background.css" />
-    <link rel="stylesheet" href="/trade/css/container-interface.css" />
+    <link rel="stylesheet" href="/trade/css/profile.css" />
+    <link rel="stylesheet" href="/trade/css/live.css" />
+    <link rel="stylesheet" href="/trade/css/chart.css" />
+    <link rel="stylesheet" href="/trade/css/interface.css" />
     <link rel="stylesheet" href="/fonts.css" />
     <script src="/trade/js/trade.js"></script>
+    <script src="/trade/js/profile.js"></script>
+    <script src="/trade/js/live.js"></script>
+    <script src="/trade/js/chart.js"></script>
+    <script src="/trade/js/interface.js"></script>
   </head>
   <body>
     <div id="trade-background"></div>
@@ -39,7 +46,16 @@
                 </div>
               </div>
             </div>
-            <div class="container-live">container-live</div>
+            <div class="container-live">
+              <div class="box-live-price">
+                <span><span id="current-price">100000</span>KRW<span class="live-indicator"></span></span>
+              </div>
+              <div class="box-price-change">
+                <span class="price-direction">▲</span>
+                <span id="daily-change" class="change-amount">500</span>
+                <span class="change-ratio">(<span id="fluctuation-rate">+ 50.00</span>%)</span>
+              </div>
+            </div>
           </div>
           <div class="container-chart">container-chart</div>
         </div>

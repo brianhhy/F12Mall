@@ -1,5 +1,5 @@
 .container-interface {
-  background-color: rgba(15, 15, 15, 0.5);
+  background-color: rgba(15, 15, 15, 0.7);
   display: flex;
   flex-direction: column;
 }
@@ -20,15 +20,22 @@
 }
 
 .box-type-controller > button.active {
-  color: #00FF2F;
-  border-top: 0.1rem solid #00FF2F;
-  border-right: 0.1rem solid #00FF2F;
-  border-left: 0.1rem solid #00FF2F;
+  color: #00ff2f;
+  border-top: 0.1rem solid #00ff2f;
+  border-right: 0.1rem solid #00ff2f;
+  border-left: 0.1rem solid #00ff2f;
 }
 
 .box-type-controller > button.deactive {
   color: #ffffff;
-  border-bottom: 0.1rem solid #00FF2F;
+  border-bottom: 0.1rem solid #00ff2f;
+  transition: all 0.3s ease;
+}
+
+.box-type-controller > button.deactive:hover {
+  background-color: rgba(0, 255, 47, 0.1);
+  box-shadow: 0 0 0.5rem rgba(0, 255, 47, 0.3);
+  text-shadow: 0 0 0.3rem #00ff2f;
 }
 
 .container-interface > div:nth-child(2) {
@@ -36,9 +43,9 @@
   flex-direction: column;
   gap: 0.4rem;
   padding: 1rem 1.8rem;
-  border-right: 0.1rem solid #00FF2F;
-  border-bottom: 0.1rem solid #00FF2F;
-  border-left: 0.1rem solid #00FF2F;
+  border-right: 0.1rem solid #00ff2f;
+  border-bottom: 0.1rem solid #00ff2f;
+  border-left: 0.1rem solid #00ff2f;
 }
 
 .box-order-item {
