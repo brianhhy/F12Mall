@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <iframe src="../common/CyberBackground/CyberBackground.html" frameborder="0"
+    <iframe src="../common/background/cyber-background.html" frameborder="0"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></iframe>
     <div class="wrapper">
-        <div class="include-header"></div>
+        <div id="include-header"></div>
         <div class="width">
             <!-- 상단 영역 -->
             <div class="section-top">
@@ -114,10 +114,9 @@
                                             500,000 <span class="change-percent">(+5.00%)</span>
                                         </div>
                                         <div class="price-icon">
-                                            <svg class="icon-svg" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
-                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text x="12" y="16" text-anchor="middle">₩</text>
                                             </svg>
                                             <span class="price-amount">10,000,000</span>
                                         </div>
@@ -142,10 +141,9 @@
                                             500,000 <span class="change-percent">(+5.00%)</span>
                                         </div>
                                         <div class="price-icon">
-                                            <svg class="icon-svg" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
-                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text x="12" y="16" text-anchor="middle">₩</text>
                                             </svg>
                                             <span class="price-amount">10,000,000</span>
                                         </div>
@@ -170,10 +168,9 @@
                                             500,000 <span class="change-percent">(+5.00%)</span>
                                         </div>
                                         <div class="price-icon">
-                                            <svg class="icon-svg" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
-                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                                <text x="12" y="16" text-anchor="middle">₩</text>
                                             </svg>
                                             <span class="price-amount">10,000,000</span>
                                         </div>
@@ -198,10 +195,9 @@
                                             500,000 <span class="change-percent">(+5.00%)</span>
                                         </div>
                                         <div class="price-icon">
-                                            <svg class="icon-svg" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
-                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text x="12" y="16" text-anchor="middle">₩</text>
                                             </svg>
                                             <span class="price-amount">10,000,000</span>
                                         </div>
@@ -226,10 +222,9 @@
                                             500,000 <span class="change-percent">(+5.00%)</span>
                                         </div>
                                         <div class="price-icon">
-                                            <svg class="icon-svg" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
-                                                <text class="icon-text" x="12" y="16" text-anchor="middle">₩</text>
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="12" fill="#00FF2F" />
+                                                <text x="12" y="16" text-anchor="middle">₩</text>
                                             </svg>
                                             <span class="price-amount">10,000,000</span>
                                         </div>
@@ -257,66 +252,238 @@
                 <div class="container-top">
                     <form class="box-search">
                         <input type="text" class="search-input" />
+                        <div class="search-divider"></div>
                         <button type="submit" class="search-btn">
-                            <div class="search-divider"></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="limegreen"
-                                viewBox="0 0 512 512">
-                                <path
-                                    d="M416 208c0 114.9-93.1 208-208 208S0 322.9 0 208 93.1 0 208 0s208 93.1 208 208zm-80 0c0-70.7-57.3-128-128-128S80 137.3 80 208s57.3 128 128 128 128-57.3 128-128zm155.3 276.7-123.9-123.9c-3.1-3.1-8.2-3.1-11.3 0L324.7 376.7c-3.1 3.1-3.1 8.2 0 11.3l123.9 123.9c3.1 3.1 8.2 3.1 11.3 0l31.3-31.3c3.1-3.1 3.1-8.2 0-11.3z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="7" />
+                                <line x1="16" y1="16" x2="21" y2="21" />
                             </svg>
                         </button>
                     </form>
-                    <div class="box-sort">
-                        <button class="sort-toggle">최신순 ▼</button>
-                        <ul class="sort-menu">
-                            <li class="sort-option">최신순</li>
-                            <li class="sort-option">금액순</li>
-                            <li class="sort-option">거래순</li>
-                            <li class="sort-option">금액 상승순</li>
-                            <li class="sort-option">비율 상승순</li>
-                        </ul>
-                    </div>
-                    <div class="box-view">
-                        <input type="radio" name="view" id="view-card" checked>
-                        <label for="view-card" class="view-toggle">카드 뷰</label>
-                        <input type="radio" name="view" id="view-list">
-                        <label for="view-list" class="view-toggle">리스트 뷰</label>
+                    <div>
+                        <div class="box-sort">
+                            <button class="sort-toggle">
+                                <span class="sort-label">최신순</span>
+                                <span class="sort-icon down"></span>
+                            </button>
+                            <ul class="sort-menu">
+                                <li class="sort-option selected">최신순</li>
+                                <li class="sort-option">금액순</li>
+                                <li class="sort-option">거래순</li>
+                                <li class="sort-option">금액 상승순</li>
+                                <li class="sort-option">비율 상승순</li>
+                            </ul>
+                        </div>
+                        <div class="box-view">
+                            <input type="radio" name="view" id="view-card" checked>
+                            <label for="view-card" class="view-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none"
+                                    stroke="#00FF2F" stroke-width="1" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="7" rx="1" />
+                                    <rect x="3" y="13" width="18" height="7" rx="1" />
+                                </svg>
+                            </label>
+                            <input type="radio" name="view" id="view-list">
+                            <label for="view-list" class="view-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00FF2F"
+                                    stroke="#00FF2F" stroke-width="1" viewBox="0 0 24 24">
+                                    <circle cx="4" cy="6" r="1.5" />
+                                    <rect x="7" y="5" width="13" height="2" rx="1" />
+                                    <circle cx="4" cy="12" r="1.5" />
+                                    <rect x="7" y="11" width="13" height="2" rx="1" />
+                                    <circle cx="4" cy="18" r="1.5" />
+                                    <rect x="7" y="17" width="13" height="2" rx="1" />
+                                </svg>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="container-bottom">
                     <!-- card view -->
                     <div class="box-grid-card">
                         <!-- card view 1 -->
-                        <div class="card-item">
-                            <div class="card-thumbnail">
-                                <img src="../assets/images/main/dogeCoin.png" alt="카드 1번 프사">
-                            </div>
-                            <div class="card-info">
-                                <div class="info-coin-name">도그스코인</div>
-                                <div class="info-author">황호연</div>
-                                <div class="info-change up">
-                                    <span class="change-arrow">▲</span>
-                                    <span class="change-value">500</span>
-                                    <span class="change-percent">(+50.00%)</span>
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCoin.png" alt="카드 1번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change up">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(+50.00%)</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-price">
-                                <span class="price-icon">₩</span>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
                                 <span class="price-amount">1,500</span>
                             </div>
                         </div>
                         <!-- card view 2 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCoin.png" alt="카드 2번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change up">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(+50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">1,500</span>
+                            </div>
+                        </div>
                         <!-- card view 3 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCoin.png" alt="카드 3번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change up">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(+50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">1,500</span>
+                            </div>
+                        </div>
                         <!-- card view 4 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCrying.png" alt="카드 4번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change down">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(-50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">500</span>
+                            </div>
+                        </div>
                         <!-- card view 5 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCrying.png" alt="카드 5번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change down">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(-50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">500</span>
+                            </div>
+                        </div>
                         <!-- card view 6 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCrying.png" alt="카드 6번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change down">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(-50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">500</span>
+                            </div>
+                        </div>
+                        <!-- card view 7 -->
+                        <div class="card-view">
+                            <div class="card-profile">
+                                <div class="card-thumbnail">
+                                    <img src="../assets/images/main/dogeCoin.png" alt="카드 7번 프사">
+                                </div>
+                                <div class="card-info">
+                                    <div class="info-meta">
+                                        <div class="info-coin-name">도지코인</div>
+                                        <div class="info-author">일론 머스크</div>
+                                    </div>
+                                    <div class="info-change up">
+                                        <span class="change-amount">500</span>
+                                        <span class="change-percent">(+50.00%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="icon-circle" cx="12" cy="12" r="12" fill="#00FF2F" />
+                                    <text x="12" y="16" text-anchor="middle">₩</text>
+                                </svg>
+                                <span class="price-amount">1,500</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- list view -->
                     <div class="box-list-card">
                         <table class="coin-table">
                             <thead>
                                 <!-- list column -->
-                                <tr>
+                                <!-- <tr>
                                     <th class="col-coin">코인이름</th>
                                     <th class="col-name">이름</th>
                                     <th class="col-price">
@@ -375,9 +542,9 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody> -->
                                 <!-- list 1 -->
-                                <tr>
+                                <!-- <tr>
                                     <td>도지코인</td>
                                     <td>일론 머스크</td>
                                     <td class="price-now">45,000</td>
@@ -386,7 +553,7 @@
                                     <td>9,999,999</td>
                                     <td class="price-low">9,999,999</td>
                                     <td class="price-high">9,999,999</td>
-                                </tr>
+                                </tr> -->
                                 <!-- list 2 -->
                                 <!-- list 3 -->
                                 <!-- list 4 -->
@@ -395,13 +562,15 @@
                                 <!-- list 7 -->
                                 <!-- list 8 -->
                                 <!-- list 9 -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./js/main.js"></script>
+    <script src="../common/header/header.js"></script>
 </body>
 
 </html>
