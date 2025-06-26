@@ -1,0 +1,74 @@
+package com.avgmax.user.dto.response;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.avgmax.user.dto.data.LinkData;
+import com.avgmax.user.domain.User;
+import com.avgmax.user.domain.Career;
+import com.avgmax.user.domain.Education;
+import com.avgmax.user.domain.Certification;
+import com.avgmax.user.domain.Profile;
+import com.avgmax.user.domain.SkillUser;
+
+import java.math.BigDecimal;
+
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+public class UserInformResponse {
+    private String userId; //USER
+    private String name;
+    private String email;
+    private String username;
+    private String image;
+    private BigDecimal money; 
+    private String position; //PROFILE frontend engineer
+    private String bio;
+    private LinkData link; 
+    private String resume;
+    private String[] stack; //SKILL_USER
+    private List<EducationResponse> education; //EDUCATION
+    private List<CareerResponse> career; //CAREER
+    private String[] certification; //CERTIFICATION
+
+    public static UserInformResponse from(
+            User user,
+            Profile profile,
+            List<Career> careerList, 
+            List<Education> educationList, 
+            List<Certification> certificationList,
+            List<SkillUser> skillUserList
+        ){
+            return UserInformResponse.builder()
+                .userId(user.getUserId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .image(user.getImage())
+                .money(user.getMoney())
+                .bio(profile.getBio())
+                .link(LinkData.of(profile))
+                .resume(profile.getResume())
+                .education(
+                    educationList.stream()
+                        .map(EducationResponse::from)
+                        .collect(Collectors.toList())
+                )
+                .career(
+                    careerList.stream()
+                        .map(CareerResponse::from)
+                        .collect(Collectors.toList())
+                )
+                .certification(
+                    certificationList.stream()
+                        .map(Certification::getCertificateUrl)
+                        .toArray(String[]::new)
+                )
+                // .stack(...)
+                .build();
+        }
+}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.avgmax.user.domain.User;
+import com.avgmax.user.dto.data.LinkData;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +27,7 @@ public class UserSignupRequest {
     private List<String> stack;
     private String resume;
     private List<CertificationRequest> certificateUrl;
-    private String github;
-    private String sns;
-    private String blog;
-    private String linkedin;
+    private LinkData link;
     private List<EducationRequest> education;
     private List<CareerRequest> career;
 
@@ -38,8 +36,8 @@ public class UserSignupRequest {
                 .name(name)
                 .email(email)
                 .username(username)
-                .password(encoder.encode(pwd))
-                .imageUrl(image)
+                .pwd(encoder.encode(pwd))
+                .image(image)
                 .build();
     }
 

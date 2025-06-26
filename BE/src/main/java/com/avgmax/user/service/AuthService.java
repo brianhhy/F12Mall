@@ -53,7 +53,7 @@ public class AuthService {
             throw new UserNotFoundException("사용자가 존재하지 않습니다.");
         }
 
-        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+        if (!passwordEncoder.matches(rawPassword, user.getPwd())) {
             throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
         }
 
