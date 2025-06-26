@@ -7,4 +7,9 @@
         VALUES (#{careerId}, #{userId}, #{companyName}, #{status}, #{position}, #{startDate}, #{endDate}, #{certificateUrl}, #{createdAt}, #{updatedAt})
     </insert>
 
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.Career">
+        SELECT CAREER_ID, USER_ID, COMPANY_NAME, STATUS, POSITION, START_DATE, END_DATE, CERTIFICATE_URL
+        FROM CAREER
+        WHERE USER_ID = #{userId}
+    </select>
 </mapper>

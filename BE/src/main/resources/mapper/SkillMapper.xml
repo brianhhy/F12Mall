@@ -6,5 +6,12 @@
         INSERT INTO SKILL (USER_ID, SKILL_ID, CREATED_AT, UPDATED_AT) 
         VALUES (#{userId}, #{skillId}, #{createdAt}, #{updatedAt})
     </insert>
+
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.SkillUser">
+        SELECT USER_ID, SKILL_ID
+        FROM SKILL_USER
+        WHERE USER_ID = #{userId}
+    </select>
+    
     
 </mapper>

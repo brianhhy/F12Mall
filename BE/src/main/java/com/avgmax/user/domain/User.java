@@ -21,8 +21,8 @@ public class User extends BaseTimeEntity  {
     private String name;
     private String email;
     private String username;
-    private String password;
-    private String imageUrl;
+    private String pwd;
+    private String image;
 
     @Builder.Default
     private BigDecimal money = new BigDecimal(0);

@@ -4,13 +4,20 @@
 
     <insert id="insert" parameterType="com.avgmax.user.domain.User">
         INSERT INTO USER (USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY, CREATED_AT, UPDATED_AT) 
-        VALUES (#{userId}, #{name}, #{email}, #{username}, #{password}, #{imageUrl}, #{money}, #{createdAt}, #{updatedAt})
+        VALUES (#{userId}, #{name}, #{email}, #{username}, #{pwd}, #{image}, #{money}, #{createdAt}, #{updatedAt})
+    </insert>
     </insert>
 
     <select id="selectByUsername" parameterType="String" resultType="com.avgmax.user.domain.User">
         SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
         FROM USER
         WHERE USERNAME = #{username}
+    </select>
+
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.User">
+        SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
+        FROM USER
+        WHERE USER_ID = #{userId}
     </select>
     
 </mapper>
