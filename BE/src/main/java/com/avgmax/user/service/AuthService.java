@@ -12,6 +12,8 @@ import com.avgmax.user.mapper.CareerMapper;
 import com.avgmax.user.mapper.CertificationMapper;
 import com.avgmax.user.mapper.EducationMapper;
 import com.avgmax.user.mapper.UserMapper;
+import com.avgmax.user.mapper.ProfileMapper;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,12 +23,13 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final CareerMapper careerMapper;
+    private final ProfileMapper profileMapper;
     private final EducationMapper educationMapper;
     private final CertificationMapper certificationMapper;
     
 
     public UserSignupResponse createUser(UserSignupRequest request) {
-        User user = request.toEntity(passwordEncoder);
+        User user = request.toUser(passwordEncoder);
         userMapper.insert(user);
 
         String userId = user.getUserId();
@@ -34,6 +37,8 @@ public class AuthService {
         request.getCareer().forEach(c -> {
             careerMapper.insert(c.toEntity(userId));
         });
+
+        profileMapper.insert(request.toProfile(userId));
 
         request.getEducation().forEach(e -> {
             educationMapper.insert(e.toEntity(userId));

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.avgmax.user.mapper.SkillMapper">
+<mapper namespace="com.avgmax.user.mapper.SkillUserMapper">
 
-    <insert id="insert" parameterType="com.avgmax.user.domain.Skill">
-        INSERT INTO SKILL (USER_ID, SKILL_ID, CREATED_AT, UPDATED_AT) 
+    <insert id="insert" parameterType="com.avgmax.user.domain.SkillUser">
+        INSERT INTO SKILL_USER (USER_ID, SKILL_ID, CREATED_AT, UPDATED_AT) 
         VALUES (#{userId}, #{skillId}, #{createdAt}, #{updatedAt})
     </insert>
 
@@ -12,6 +12,5 @@
         FROM SKILL_USER
         WHERE USER_ID = #{userId}
     </select>
-    
     
 </mapper>
