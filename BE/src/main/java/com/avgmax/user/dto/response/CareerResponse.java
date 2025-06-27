@@ -19,7 +19,7 @@ public class CareerResponse {
             .companyName(career.getCompanyName())
             .status(career.getStatus())
             .position(career.getPosition())
-            .startDate(career.getStartDate().toString()) // 날짜 타입이면 String으로 변환
+            .startDate(career.getStartDate().toString())
             .endDate(career.getEndDate().toString())
             .build();
     }

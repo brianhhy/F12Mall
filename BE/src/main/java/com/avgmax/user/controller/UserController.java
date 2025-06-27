@@ -16,12 +16,9 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
    private final UserService userService;
 
-   @GetMapping("/{userId}/profile") // /{userId}/profile 요청
-   public ResponseEntity<UserInformResponse> getUserInform(
-    @PathVariable String userId //url 경로로 넘어온 데이터 값 저장
-   ){
-        //userId를 userService로 전달 하여 response 받는다
+   @GetMapping("/{userId}/profile")
+   public ResponseEntity<UserInformResponse> getUserInform(@PathVariable String userId){
         UserInformResponse response = userService.getUserInform(userId);
-        return ResponseEntity.ok(response); //RestController로 인해 response가 자바객체 -> JSON 반환
+        return ResponseEntity.ok(response);
    }
 }

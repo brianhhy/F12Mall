@@ -20,20 +20,20 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserInformResponse {
-    private String userId; //USER
+    private String userId;
     private String name;
     private String email;
     private String username;
     private String image;
     private BigDecimal money; 
-    private String position; //PROFILE frontend engineer
+    private String position;
     private String bio;
     private LinkData link; 
     private String resume;
-    private String[] stack; //SKILL_USER
-    private List<EducationResponse> education; //EDUCATION
-    private List<CareerResponse> career; //CAREER
-    private String[] certification; //CERTIFICATION
+    private String[] stack;
+    private List<EducationResponse> education;
+    private List<CareerResponse> career;
+    private String[] certification;
 
     public static UserInformResponse from(
             User user,

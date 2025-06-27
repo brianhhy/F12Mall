@@ -20,7 +20,5 @@ public class LinkData {
                 .blog(profile.getBlog())
                 .linkedin(profile.getLinkedin())
                 .build();
-    }
-
-   
+    } 
 }

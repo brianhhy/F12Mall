@@ -19,7 +19,7 @@ public class EducationResponse {
             .schoolName(education.getSchoolName())
             .status(education.getStatus())
             .major(education.getMajor())
-            .startDate(education.getStartDate().toString()) // 날짜 타입이면 String으로 변환
+            .startDate(education.getStartDate().toString())
             .endDate(education.getEndDate().toString())
             .build();
     }
