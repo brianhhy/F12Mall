@@ -1,5 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // sort dropdown
+    // Carousel Slide
+    const carousel = document.querySelector(".carousel-track");
+    const slides = Array.from(carousel.children);
+    const dots = document.querySelectorAll(".carousel-indicator .dot");
+
+    let index = 0;
+    const total = slides.length;
+
+    function goToSlide(i) {
+        carousel.style.transition = "transform 0.5s ease-in-out";
+        carousel.style.transform = `translateX(-${100 * i}%)`;
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle("active", idx === i);
+        });
+    }
+
+    function resetToStart() {
+        carousel.style.transition = "none";
+        carousel.style.transform = `translateX(0%)`;
+        index = 0;
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle("active", idx === 0);
+        });
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+            index = i;
+            goToSlide(index);
+        });
+    });
+
+    setInterval(() => {
+        index++;
+
+        if (index < total) {
+            goToSlide(index);
+        } else {
+            goToSlide(index);
+            setTimeout(resetToStart, 510);
+        }
+    }, 8000);
+
+    // Sort Dropdown
     const sortToggle = document.querySelector(".sort-toggle");
     const sortMenu = document.querySelector(".sort-menu");
     const sortOptions = document.querySelectorAll(".sort-option");
@@ -25,11 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // view 전환
+    // View Radio
     const viewCard = document.getElementById("view-card");
     const viewList = document.getElementById("view-list");
     const cardView = document.querySelector(".box-grid-card");
-    const listView = document.querySelector(".box-list-card");
+    const listView = document.querySelector(".box-coin-list");
 
     if (viewCard && viewList && cardView && listView) {
         function toggleView() {

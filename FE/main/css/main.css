@@ -32,6 +32,7 @@
     flex-direction: column;
 }
 
+/* sursing-header */
 .section-top .container-left .box-surging-header {
     width: 100%;
     height: 28px;
@@ -50,6 +51,7 @@
     text-shadow: 0 0 27px rgba(102, 255, 102, 0.25);
 }
 
+/* surging-body */
 .section-top .container-left .box-surging-body {
     width: 100%;
     height: 305px;
@@ -78,10 +80,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(217, 217, 217, 0.36);
-
 }
 
-.entry-left {
+.surging-entry:hover {
+    background-color: rgba(0, 255, 47, 0.1);
+}
+
+.surging-entry .entry-left {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -171,17 +176,17 @@
     padding-right: 3px;
 }
 
-/*-------------------- 
-       Carousel
---------------------*/
+/*---------------------- 
+        Carousel
+----------------------*/
 
 .section-top .container-right {
     width: 1058px;
     display: flex;
     flex-direction: column;
-    /* background-color: rgba(0, 255, 0, 0.15); */
 }
 
+/* carousel-header */
 .section-top .container-right .box-carousel-header {
     width: 100%;
     height: 28px;
@@ -198,16 +203,32 @@
     text-shadow: 0 0 30px rgba(102, 255, 102, 0.25);
 }
 
+/* carousel-body */
 .section-top .container-right .box-carousel-body {
     width: 100%;
     height: 305px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    overflow: hidden;
+    position: relative;
     background-color: rgba(75, 75, 75, 0.36);
     border: 1.2px solid #00FF2F;
     box-shadow: 4px 4px 4px 4px rgba(0, 189, 50, 0.33);
-    position: relative;
+
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Top 5 Coin */
+.carousel-cap-cards,
+.carousel-banner {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
 }
 
 .box-carousel-body .carousel-cap-cards {
@@ -216,8 +237,6 @@
     align-items: center;
     justify-content: center;
     gap: 2.875em;
-    /* position: absolute; */
-    /* z-index: 1; */
 }
 
 .box-carousel-body .carousel-cap-cards .cap-card {
@@ -226,6 +245,13 @@
     margin: 0;
     border: 1px solid #00FF2F;
     background-color: rgba(0, 0, 0, 0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cap-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 255, 47, 1);
+    z-index: 1;
 }
 
 .cap-card .card-top {
@@ -331,8 +357,6 @@
 .card-price>.price-icon>svg {
     width: 12px;
     height: 12px;
-    display: inline-block;
-    vertical-align: middle;
     margin-bottom: 1.5px;
 }
 
@@ -342,12 +366,26 @@
 }
 
 .price-icon>.price-amount {
-    display: inline-block;
-    vertical-align: middle;
     font-size: 16px;
     color: #00FF2F;
 }
 
+
+/* banner */
+.box-carousel-body .carousel-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 1em;
+}
+
+.carousel-banner img {
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* carousel indicator */
 .box-carousel-body .carousel-indicator {
     width: 82px;
     height: 15px;
@@ -372,20 +410,21 @@
     height: 0.5em;
     background-color: #FFFFFF;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .carousel-indicator>.dot.active {
     background-color: #00FF2F;
 }
 
-/*--------------------
-sect-bot : container-top
---------------------*/
+/*------------------------------
+    sect-bot : container-top
+------------------------------*/
 
 .section-bottom {
     width: 85.375rem;
     height: 34.75rem;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 1.5rem 0 rgba(0, 255, 47, 0.8);
 }
 
@@ -399,6 +438,7 @@ sect-bot : container-top
     box-sizing: border-box;
 }
 
+/* search */
 .section-bottom .container-top .box-search {
     width: 23.125rem;
     height: 2.5rem;
@@ -454,6 +494,7 @@ sect-bot : container-top
     transform: translateX(-1rem);
 }
 
+/* sort dropdown */
 .section-bottom .container-top .box-sort {
     width: 9.375rem;
     height: 2.5rem;
@@ -543,6 +584,7 @@ sect-bot : container-top
     font-weight: bold;
 }
 
+/* view radio */
 .section-bottom .container-top .box-view {
     display: flex;
     gap: 2px;
@@ -580,8 +622,8 @@ sect-bot : card-view (container-bottom)
 .section-bottom .container-bottom {
     width: 100%;
     height: 31rem;
-    scrollbar-width: none;
     overflow-y: auto;
+    scrollbar-width: none;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -592,6 +634,7 @@ sect-bot : card-view (container-bottom)
     display: none;
 }
 
+/* gird card */
 .section-bottom .container-bottom .box-grid-card {
     width: 90%;
     display: grid;
@@ -602,7 +645,6 @@ sect-bot : card-view (container-bottom)
     box-sizing: border-box;
     margin-top: 1rem;
     margin-bottom: 1rem;
-
 }
 
 .box-grid-card .card-view {
@@ -610,6 +652,13 @@ sect-bot : card-view (container-bottom)
     height: 12.375rem;
     background-color: rgba(0, 0, 0, 0.95);
     border: 1px solid #00FF2F;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-view:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 255, 47, 1);
+    z-index: 1;
 }
 
 .card-view .card-profile {
@@ -719,9 +768,140 @@ sect-bot : card-view (container-bottom)
 }
 
 /*--------------------------------------
-sect-bot : card-view (container-bottom)
+sect-bot : list-view (container-bottom)
 --------------------------------------*/
 
-.box-list-card {
+.section-bottom .container-bottom .box-coin-list {
+    width: 82.5rem;
+    height: 31rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+/* table title */
+.box-coin-list .table-header {
+    display: flex;
+    height: 2.5rem;
+    font-size: 1.25rem;
+    color: #D5F0A4;
+    background-color: #1F1F1F;
+    box-shadow: 0 2px 5px rgba(0, 255, 47, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* table list */
+.box-coin-list .table-body {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.table-body::-webkit-scrollbar {
     display: none;
+}
+
+.table-row {
+    display: flex;
+    height: 2.5rem;
+    color: rgba(214, 214, 214, 0.7);
+    background-color: rgba(91, 91, 91, 0.3);
+    margin-bottom: 0.5rem;
+}
+
+.table-row:hover {
+    background-color: rgba(0, 255, 47, 0.05);
+}
+
+/* table title style */
+.col {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.col.col-coin,
+.col.col-name {
+    justify-content: center;
+    padding: 0;
+}
+
+/* up & down */
+.col.col-diff.up::before {
+    content: "▲";
+    font-size: 0.75rem;
+    padding-right: 0.5rem;
+}
+
+.col.col-rate.up::before {
+    content: "+";
+    font-size: 0.875rem;
+    padding-right: 0.5rem;
+}
+
+.col.col-diff.down::before {
+    content: "▼";
+    font-size: 0.75rem;
+    padding-right: 0.625rem;
+}
+
+.col.col-rate.down::before {
+    content: "-";
+    font-size: 0.875rem;
+    padding-right: 0.625rem;
+}
+
+.col-coin {
+    width: 12%;
+}
+
+.col-name {
+    width: 12%;
+}
+
+.col-price {
+    width: 14%;
+}
+
+.col-diff {
+    width: 14%;
+}
+
+.col-rate {
+    width: 12%;
+}
+
+.col-volume {
+    width: 13%;
+}
+
+.col-low {
+    width: 11.5%;
+}
+
+.col-high {
+    width: 11.5%;
+}
+
+.table-row .col-price {
+    color: #00FF2F;
+}
+
+.table-row .col-diff.up,
+.table-row .col-rate.up,
+.table-row .col-high {
+    color: #E01200;
+}
+
+.table-row .col-diff.down,
+.table-row .col-rate.down,
+.table-row .col-low {
+    color: #1376EE;
 }
