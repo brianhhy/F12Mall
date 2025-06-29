@@ -1,12 +1,18 @@
 package com.avgmax.user.controller;
 
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.avgmax.user.dto.response.UserInformResponse;
 import com.avgmax.user.service.UserService;
+import com.avgmax.user.service.FileService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,10 +21,20 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/users")
 public class UserController {
    private final UserService userService;
+   private final FileService fileService;
 
    @GetMapping("/{userId}/profile")
-   public ResponseEntity<UserInformResponse> getUserInform(@PathVariable String userId){
-        UserInformResponse response = userService.getUserInform(userId);
-        return ResponseEntity.ok(response);
+   public ResponseEntity<UserInformResponse> getUserInform(@PathVariable String userId) {
+      UserInformResponse response = userService.getUserInform(userId);
+      return ResponseEntity.ok(response);
+   }
+
+   @PostMapping("/{userId}/uploads")
+   public ResponseEntity<List<String>> uploadFiles(
+         @PathVariable String userId,
+         @RequestParam("file") List<MultipartFile> files) {
+
+      List<String> urls = fileService.uploadForUser(userId, files);
+      return ResponseEntity.ok(urls);
    }
 }

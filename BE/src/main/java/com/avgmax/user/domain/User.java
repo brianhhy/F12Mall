@@ -17,7 +17,6 @@ import com.avgmax.global.base.BaseTimeEntity;
 public class User extends BaseTimeEntity  {
     @Builder.Default
     private String userId = UUID.randomUUID().toString();
-
     private String name;
     private String email;
     private String username;
