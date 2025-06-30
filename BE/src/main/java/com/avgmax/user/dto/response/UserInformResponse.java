@@ -9,7 +9,7 @@ import com.avgmax.user.domain.User;
 import com.avgmax.user.domain.Career;
 import com.avgmax.user.domain.Education;
 import com.avgmax.user.domain.Certification;
-import com.avgmax.user.domain.Profile;
+//import com.avgmax.user.domain.Profile;
 import com.avgmax.user.domain.SkillUser;
 
 import java.math.BigDecimal;
@@ -37,7 +37,7 @@ public class UserInformResponse {
 
     public static UserInformResponse from(
             User user,
-            Profile profile,
+            // Profile profile,
             List<Career> careerList, 
             List<Education> educationList, 
             List<Certification> certificationList,
@@ -50,9 +50,9 @@ public class UserInformResponse {
                 .username(user.getUsername())
                 .image(user.getImage())
                 .money(user.getMoney())
-                .bio(profile.getBio())
-                .link(LinkData.of(profile))
-                .resume(profile.getResume())
+                // .bio(profile.getBio())
+                // .link(LinkData.of(profile))
+                // .resume(profile.getResume())
                 .education(
                     educationList.stream()
                         .map(EducationResponse::from)
