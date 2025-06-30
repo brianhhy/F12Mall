@@ -49,4 +49,13 @@ public class Trade extends BaseTimeEntity {
         this.executedAt = LocalDateTime.now();
         this.status = TradeStatus.COMPLETED;
     }
+
+    public void validateOwnership(String userId, String coinId) {
+        if (!this.userId.equals(userId)) {
+            throw TradeException.of(ErrorCode.TRADE_USER_MISMATCH);
+        }
+        if (!this.coinId.equals(coinId)) {
+            throw TradeException.of(ErrorCode.TRADE_COIN_MISMATCH);
+        }
+    }
 }

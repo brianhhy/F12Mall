@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.avgmax.trade.mapper.TradeMapper">
-    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.trade.domain.Trade">
-        SELECT TRADE_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, EXECUTED_AT, STATUS, CREATED_AT, UPDATED_AT
-        FROM TRADE
-        WHERE USER_ID = #{userId}
-    </select>
-</mapper>

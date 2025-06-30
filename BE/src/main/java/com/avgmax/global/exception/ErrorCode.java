@@ -17,7 +17,10 @@ public enum ErrorCode {
 
     // Trade
     TRADE_ALREADY_COMPLETED("이미 체결된 거래입니다.", HttpStatus.BAD_REQUEST),
-    INVALID_ORDER_TYPE("잘못된 주문 타입입니다.", HttpStatus.BAD_REQUEST);
+    INVALID_ORDER_TYPE("잘못된 주문 타입입니다.", HttpStatus.BAD_REQUEST),
+    TRADE_NOT_FOUND("거래를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+    TRADE_USER_MISMATCH("해당 거래에 대한 권한이 없습니다.", HttpStatus.FORBIDDEN),
+    TRADE_COIN_MISMATCH("거래와 코인 정보가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
 
     private final String message;
     private final HttpStatus status;
