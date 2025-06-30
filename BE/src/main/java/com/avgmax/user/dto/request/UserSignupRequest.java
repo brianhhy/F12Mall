@@ -2,21 +2,19 @@ package com.avgmax.user.dto.request;
 
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.avgmax.trade.domain.Coin;
+import com.avgmax.trade.domain.UserCoin;
 import com.avgmax.user.domain.User;
 import com.avgmax.user.domain.Profile;
 import com.avgmax.user.dto.data.LinkData;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserSignupRequest {
     private String image;
     private String username;
@@ -32,7 +30,7 @@ public class UserSignupRequest {
     private List<EducationRequest> education;
     private List<CareerRequest> career;
 
-    public User toUser(BCryptPasswordEncoder encoder) {
+    public User toUser(PasswordEncoder encoder) {
         return User.builder()
                 .name(name)
                 .email(email)
@@ -53,4 +51,16 @@ public class UserSignupRequest {
                 .build();
     } 
 
+    public Coin toCoin(String userId) {
+        return Coin.builder()
+                .creatorId(userId)
+                .build();
+    }
+
+    public UserCoin toUserCoin(String userId, String coinId) {
+        return UserCoin.builder()
+                .holderId(userId)
+                .coinId(coinId)
+                .build();
+    }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.trade.mapper.TradeMapper">
+
+    <insert id="insert" parameterType="com.avgmax.trade.domain.Trade">
+        INSERT INTO TRADE (TRADE_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, EXECUTED_AT, STATUS, CREATED_AT, UPDATED_AT)
+        VALUES (#{tradeId}, #{userId}, #{coinId}, #{orderType}, #{quantity}, #{unitPrice}, #{executedAt}, #{status}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="selectById" parameterType="string" resultType="com.avgmax.trade.domain.Trade">
+        SELECT TRADE_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, EXECUTED_AT, STATUS, CREATED_AT, UPDATED_AT
+        FROM TRADE
+        WHERE TRADE_ID = #{tradeId}
+    </select>
+
+    <select id="selectByIdWithUserAndCoin" parameterType="string" resultType="com.avgmax.trade.dto.query.TradeWithUserAndCoinQuery">
+        SELECT 
+            t.TRADE_ID, t.ORDER_TYPE, t.QUANTITY, t.UNIT_PRICE, 
+            t.EXECUTED_AT, t.STATUS, t.CREATED_AT, t.UPDATED_AT,
+            u.USER_ID, u.NAME as USER_NAME, u.EMAIL as USER_EMAIL, u.USERNAME as USER_USERNAME,
+            u.PWD as USER_PWD, u.IMAGE as USER_IMAGE_URL, u.MONEY as USER_MONEY,
+            u.CREATED_AT as USER_CREATED_AT, u.UPDATED_AT as USER_UPDATED_AT,
+            c.COIN_ID, c.USER_ID as COIN_USER_ID, c.CREATED_AT as COIN_CREATED_AT, c.UPDATED_AT as COIN_UPDATED_AT
+        FROM TRADE t
+        LEFT JOIN USER u ON t.USER_ID = u.USER_ID
+        LEFT JOIN COIN c ON t.COIN_ID = c.COIN_ID
+        WHERE t.TRADE_ID = #{tradeId}
+    </select>
+
+</mapper>

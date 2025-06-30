@@ -1,5 +1,5 @@
 package com.avgmax.trade.domain.enums;
 
-public enum StatusType {
+public enum TradeStatus {
     PENDING, COMPLETED
 }

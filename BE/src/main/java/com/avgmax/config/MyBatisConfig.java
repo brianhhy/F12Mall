@@ -3,19 +3,21 @@ package com.avgmax.config;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.apache.ibatis.type.EnumTypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.avgmax.trade.domain.enums.OrderType;
+import com.avgmax.trade.domain.enums.TradeStatus;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@MapperScan({"com.avgmax.user.mapper", "com.avgmax.trade.mapper"})
 @PropertySource(value = "classpath:application.yml", factory = YamlPropertySourceFactory.class)
 public class MyBatisConfig {
     
@@ -33,7 +35,6 @@ public class MyBatisConfig {
 
     @Value("${db.mariadb.mapper}")
     private String mapperPath;
-
 
     @Bean
     public DataSource dataSource() {
@@ -53,7 +54,23 @@ public class MyBatisConfig {
         factory.setDataSource(dataSource);
         factory.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources(mapperPath));
-        return factory.getObject();
+        
+        // MyBatis Configuration 설정
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setMapUnderscoreToCamelCase(true);
+        factory.setConfiguration(configuration);
+        
+        SqlSessionFactory sqlSessionFactory = factory.getObject();
+        
+        registerEnumTypeHandlers(sqlSessionFactory.getConfiguration().getTypeHandlerRegistry());
+        
+        return sqlSessionFactory;
+    }
+
+    private void registerEnumTypeHandlers(TypeHandlerRegistry registry) {
+        // 여기에 새로운 enum이 추가될 때마다 한 줄씩 추가
+        registry.register(OrderType.class, new EnumTypeHandler<>(OrderType.class));
+        registry.register(TradeStatus.class, new EnumTypeHandler<>(TradeStatus.class));
     }
 
     @Bean

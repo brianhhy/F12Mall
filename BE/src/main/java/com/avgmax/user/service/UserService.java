@@ -12,20 +12,20 @@ import org.springframework.stereotype.Service;
 // import com.avgmax.user.domain.Profile;
 // import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.domain.enums.OrderType;
-import com.avgmax.trade.domain.enums.StatusType;
+import com.avgmax.trade.domain.enums.TradeStatus;
 import com.avgmax.trade.dto.response.TradeUserCoinResponse;
 import com.avgmax.trade.mapper.TradeMapper;
 import com.avgmax.user.domain.Career;
 import com.avgmax.user.domain.Certification;
 import com.avgmax.user.domain.Education;
-import com.avgmax.user.domain.SkillUser;
+import com.avgmax.user.domain.UserSkill;
 import com.avgmax.user.domain.User;
 
 import com.avgmax.user.mapper.UserMapper;
 import com.avgmax.user.mapper.CareerMapper;
 import com.avgmax.user.mapper.EducationMapper;
 //import com.avgmax.user.mapper.ProfileMapper;
-import com.avgmax.user.mapper.SkillUserMapper;
+import com.avgmax.user.mapper.UserSkillMapper;
 import com.avgmax.user.mapper.UserCoinMapper;
 import com.avgmax.user.mapper.CertificationMapper;
 import com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery;
@@ -33,6 +33,8 @@ import com.avgmax.user.dto.response.UserCoinResponse;
 import com.avgmax.user.dto.response.UserInformResponse;
 
 import lombok.RequiredArgsConstructor;
+import com.avgmax.global.exception.ErrorCode;
+import com.avgmax.user.exception.UserException;
 
 @Service
 @RequiredArgsConstructor
@@ -42,20 +44,21 @@ public class UserService {
     private final CareerMapper careerMapper;
     private final EducationMapper educationMapper;
     private final CertificationMapper certificationMapper;
-    private final SkillUserMapper skillUserMapper;
+    private final UserSkillMapper userSkillMapper;
     private final UserCoinMapper userCoinMapper;
     private final TradeMapper tradeMapper;
 
     //사용자 정보 조회 
     public UserInformResponse getUserInform(String userId){
-        User user = userMapper.selectByUserId(userId);
+        User user = userMapper.selectByUserId(userId)
+            .orElseThrow(() -> UserException.of(ErrorCode.USER_NOT_FOUND));
         //Profile profile = profileMapper.selectByUserId(userId);
         List<Career> careerList = careerMapper.selectByUserId(userId);
         List<Education> educationList = educationMapper.selectByUserId(userId);
         List<Certification> certificationList = certificationMapper.selectByUserId(userId);
-        List<SkillUser> skillUserList = skillUserMapper.selectByUserId(userId);
+        List<UserSkill> userSkillList = userSkillMapper.selectByUserId(userId);
         
-        return UserInformResponse.from(user, careerList, educationList, certificationList, skillUserList);
+        return UserInformResponse.from(user, careerList, educationList, certificationList, userSkillList);
     }
 
     //사용자 보유 코인 목록 조회
@@ -101,7 +104,7 @@ public class UserService {
 
     private BigDecimal calculateHoldQuantity(List<TradeUserCoinResponse> trades){
         BigDecimal holdQuantity = trades.stream()
-        .filter(trade -> trade.getStatus() == StatusType.COMPLETED)
+        .filter(trade -> trade.getStatus() == TradeStatus.COMPLETED)
         .map(trade -> 
             trade.getOrderType() == OrderType.SELL 
                 ? trade.getQuantity().negate() //SELL이면 음수로
@@ -116,7 +119,7 @@ public class UserService {
 
         BigDecimal lockedQuantity = trades.stream()
         .filter(trade -> trade.getOrderType() == OrderType.SELL)
-        .filter(trade -> trade.getStatus() == StatusType.PENDING || trade.getStatus() == StatusType.COMPLETED)
+        .filter(trade -> trade.getStatus() == TradeStatus.PENDING || trade.getStatus() == TradeStatus.COMPLETED)
         .map(TradeUserCoinResponse::getQuantity)
         .reduce(BigDecimal.ZERO, BigDecimal::add);
 
@@ -126,7 +129,7 @@ public class UserService {
    private BigDecimal calculateTotalBuyAmount(List<TradeUserCoinResponse> trades) {
         return trades.stream()
             .filter(trade ->
-                trade.getStatus() == StatusType.COMPLETED &&
+                trade.getStatus() == TradeStatus.COMPLETED &&
                 trade.getOrderType() == OrderType.BUY)
             .map(trade -> trade.getQuantity().multiply(trade.getUnitPrice())) // 수량 × 단가
             .reduce(BigDecimal.ZERO, BigDecimal::add);

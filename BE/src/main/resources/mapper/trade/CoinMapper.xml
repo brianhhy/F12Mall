@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.trade.mapper.CoinMapper">
+
+    <insert id="insert" parameterType="com.avgmax.trade.domain.Coin">
+        INSERT INTO COIN (COIN_ID, CREATOR_ID, CREATED_AT, UPDATED_AT)
+        VALUES (#{coinId}, #{creatorId}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="selectById" parameterType="String" resultType="com.avgmax.trade.domain.Coin">
+        SELECT * FROM COIN WHERE COIN_ID = #{coinId}
+    </select>
+    
+</mapper>

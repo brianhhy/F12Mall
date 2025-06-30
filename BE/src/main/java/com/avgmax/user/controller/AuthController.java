@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.avgmax.user.domain.User;
 import com.avgmax.user.dto.request.UserLoginRequest;
 import com.avgmax.user.dto.request.UserSignupRequest;
 import com.avgmax.user.dto.response.UserLoginResponse;
@@ -29,13 +28,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request, HttpSession session) {
-        log.info("로그인 시도: {}", request.getUsername());
-
-        User user = authService.login(request.getUsername(), request.getPassword());
-        session.setAttribute("user", user);
-
+        log.info("로그인 시도: {}", request.getUserId());
+        UserLoginResponse response = authService.login(request.getUserId(), request.getPassword());
+        session.setAttribute("user", response.getUserId());
         return ResponseEntity.status(HttpStatus.OK)
-                .body(UserLoginResponse.of(true, session.getId()));
+            .body(response);
     }
 
     @PostMapping("/signup")

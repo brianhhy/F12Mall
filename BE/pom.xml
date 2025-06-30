@@ -13,7 +13,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.slf4j-version>1.8.0-beta4</org.slf4j-version>
+		<org.slf4j-version>1.7.36</org.slf4j-version>
 	</properties>
 
 	<dependencies>
@@ -58,8 +58,18 @@
 		<!-- Spring security --> 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>5.8.0</version> <!-- 사용 중인 Spring 버전에 맞춰 조절 -->
+			<version>5.7.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -79,14 +89,12 @@
 			<version>1.4</version> <!-- 또는 호환되는 최신 버전 -->
 		</dependency>
 
-
 		<!-- AWS SDK for S3 (MinIO는 S3 호환) -->
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
 			<version>1.12.677</version>
 		</dependency>
-
 
 		<!-- Logging -->
 		<dependency>
@@ -99,6 +107,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.11</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- lombok -->

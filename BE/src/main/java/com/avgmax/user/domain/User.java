@@ -2,21 +2,29 @@ package com.avgmax.user.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.avgmax.global.base.BaseTimeEntity;
+import com.avgmax.global.exception.ErrorCode;
+import com.avgmax.user.exception.UserException;
+import com.avgmax.trade.domain.enums.OrderType;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseTimeEntity  {
     @Builder.Default
     private String userId = UUID.randomUUID().toString();
+
     private String name;
     private String email;
     private String username;
@@ -24,22 +32,38 @@ public class User extends BaseTimeEntity  {
     private String image;
 
     @Builder.Default
-    private BigDecimal money = new BigDecimal(0);
+    private BigDecimal money = new BigDecimal(20000);
 
-    public void deposit(BigDecimal amount) {
+    public void validatePassword(String rawPassword, PasswordEncoder encoder) {
+        if (!encoder.matches(rawPassword, this.pwd)) {
+            throw UserException.of(ErrorCode.PASSWORD_MISMATCH);
+        }
+    }
+
+    private void deposit(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0 ) {
-            throw new IllegalArgumentException("입금액은 0보다 커야 합니다.");
+            throw UserException.of(ErrorCode.INVALID_DEPOSIT_AMOUNT);
         }
         this.money = this.money.add(amount);
     }
 
-    public void withdraw(BigDecimal amount) {
+    private void withdraw(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("출금액은 0보다 커야 합니다.");
+            throw UserException.of(ErrorCode.INVALID_WITHDRAWAL_AMOUNT);
         }
         if (this.money.compareTo(amount) < 0) {
-            throw new IllegalStateException("잔액이 부족합니다.");
+            throw UserException.of(ErrorCode.INSUFFICIENT_BALANCE);
         }
         this.money = this.money.subtract(amount);
+    }
+
+    public void processOrderAmount(OrderType orderType, BigDecimal amount) {
+        if (orderType == OrderType.BUY) {
+            withdraw(amount);
+        } else if (orderType == OrderType.SELL) {
+            deposit(amount);
+        } else {
+            throw UserException.of(ErrorCode.INVALID_ORDER_TYPE);
+        }
     }
 }

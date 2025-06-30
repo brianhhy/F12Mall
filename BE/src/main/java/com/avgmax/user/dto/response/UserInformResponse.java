@@ -1,7 +1,6 @@
 package com.avgmax.user.dto.response;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.avgmax.user.dto.data.LinkData;
@@ -10,7 +9,7 @@ import com.avgmax.user.domain.Career;
 import com.avgmax.user.domain.Education;
 import com.avgmax.user.domain.Certification;
 //import com.avgmax.user.domain.Profile;
-import com.avgmax.user.domain.SkillUser;
+import com.avgmax.user.domain.UserSkill;
 
 import java.math.BigDecimal;
 
@@ -41,7 +40,7 @@ public class UserInformResponse {
             List<Career> careerList, 
             List<Education> educationList, 
             List<Certification> certificationList,
-            List<SkillUser> skillUserList
+            List<UserSkill> userSkillList
         ){
             return UserInformResponse.builder()
                 .userId(user.getUserId())

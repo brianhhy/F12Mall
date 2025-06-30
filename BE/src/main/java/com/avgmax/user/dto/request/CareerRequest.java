@@ -2,8 +2,6 @@ package com.avgmax.user.dto.request;
 
 import com.avgmax.user.domain.Career;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
