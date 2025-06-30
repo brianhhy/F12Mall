@@ -1,6 +1,7 @@
 package com.avgmax.user.controller;
 
 import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.avgmax.user.dto.response.UserCoinResponse;
 import com.avgmax.user.dto.response.UserInformResponse;
 import com.avgmax.user.service.UserService;
 import com.avgmax.user.service.FileService;
@@ -25,10 +27,9 @@ public class UserController {
 
    @GetMapping("/{userId}/profile")
    public ResponseEntity<UserInformResponse> getUserInform(@PathVariable String userId) {
-      UserInformResponse response = userService.getUserInform(userId);
-      return ResponseEntity.ok(response);
+         UserInformResponse response = userService.getUserInform(userId);
+         return ResponseEntity.ok(response);
    }
-
    @PostMapping("/{userId}/uploads")
    public ResponseEntity<List<String>> uploadFiles(
          @PathVariable String userId,
@@ -36,5 +37,13 @@ public class UserController {
 
       List<String> urls = fileService.uploadForUser(userId, files);
       return ResponseEntity.ok(urls);
+   }
+   //보유 코인 목록 조회
+   @GetMapping("/{userId}/coins")
+   public ResponseEntity<List<UserCoinResponse>> getUserCoinList(
+      @PathVariable String userId
+   ){
+      List<UserCoinResponse> responses = userService.getUserCoinList(userId);
+      return ResponseEntity.ok(responses);
    }
 }

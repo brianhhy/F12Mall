@@ -6,7 +6,6 @@
         INSERT INTO USER (USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY, CREATED_AT, UPDATED_AT) 
         VALUES (#{userId}, #{name}, #{email}, #{username}, #{pwd}, #{image}, #{money}, #{createdAt}, #{updatedAt})
     </insert>
-    </insert>
 
     <select id="selectByUsername" parameterType="String" resultType="com.avgmax.user.domain.User">
         SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY

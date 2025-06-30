@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.user.mapper.UserCoinMapper">
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery">
+        SELECT 
+        uc.USER_COIN_ID AS userCoinId, 
+        uc.HOLDER_ID AS holderId, 
+        uc.HOLD_QUANTITY AS holdQuantity, 
+        uc.TOTAL_BUY_AMOUNT AS totalBuyAmount, 
+        
+        c.COIN_ID AS coinId, 
+        c.CREATOR_ID AS creatorId, 
+        
+        creator.NAME AS creatorName, 
+        creator.IMAGE AS creatorImage, 
+        creator.USERNAME AS creatorUsername 
+        
+        FROM USER_COIN uc 
+        JOIN COIN c 
+            ON uc.COIN_ID = c.COIN_ID 
+        JOIN USER creator 
+            ON c.CREATOR_ID = creator.USER_ID 
+        WHERE uc.HOLDER_ID = #{userId}
+    </select>
+</mapper>
