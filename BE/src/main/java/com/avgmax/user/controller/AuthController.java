@@ -35,7 +35,7 @@ public class AuthController {
         session.setAttribute("user", user);
 
         return ResponseEntity.status(HttpStatus.OK)
-            .body(UserLoginResponse.of(true, session.getId()));
+                .body(UserLoginResponse.of(true, session.getId()));
     }
 
     @PostMapping("/signup")
@@ -44,9 +44,8 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<UserLogoutResponse>  logout(HttpSession session) {
+    public ResponseEntity<UserLogoutResponse> logout(HttpSession session) {
         session.invalidate();
         return ResponseEntity.status(HttpStatus.OK).body(UserLogoutResponse.of(true));
     }
-
 }
