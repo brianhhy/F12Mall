@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class SkillUser extends BaseTimeEntity {
+public class UserSkill extends BaseTimeEntity {
     @Builder.Default
     private String skillId = UUID.randomUUID().toString();
     private String userId;

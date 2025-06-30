@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.avgmax.global.exception.ErrorCode;
 import com.avgmax.global.service.MinioService;
-import com.avgmax.user.exception.FileUploadFailedException;
-
+import com.avgmax.user.exception.UserException;
 @Service
 @RequiredArgsConstructor
 public class FileService {
@@ -27,7 +27,7 @@ public class FileService {
                         file.getContentType());
                 urls.add(url);
             } catch (Exception e) {
-                throw new FileUploadFailedException("파일 업로드에 실패했습니다: " + file.getOriginalFilename(), e);
+                throw UserException.of(ErrorCode.FILE_UPLOAD_FAILED);
             }
         }
 

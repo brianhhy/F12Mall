@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.trade.mapper.UserCoinMapper">
+
+    <insert id="insert" parameterType="com.avgmax.trade.domain.UserCoin">
+        INSERT INTO USER_COIN (USER_COIN_ID, HOLDER_ID, COIN_ID, HOLD_QUANTITY, BUY_PRICE, CREATED_AT, UPDATED_AT)
+        VALUES (#{userCoinId}, #{holderId}, #{coinId}, #{holdQuantity}, #{buyPrice}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="selectByHolderIdAndCoinId" parameterType="String" resultType="com.avgmax.trade.domain.UserCoin">
+        SELECT * FROM USER_COIN WHERE HOLDER_ID = #{holderId} AND COIN_ID = #{coinId}
+    </select>
+
+</mapper>

@@ -13,7 +13,6 @@ public class UserSignupResponse {
     public static UserSignupResponse of(Boolean success, String message, String userId){
         return UserSignupResponse.builder()
             .success(success)
-            .message(message)
             .userId(userId)
             .build();
     }

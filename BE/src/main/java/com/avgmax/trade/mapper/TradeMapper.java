@@ -5,6 +5,8 @@ import java.util.List;
 import com.avgmax.trade.domain.Trade;
 
 public interface TradeMapper {
-    public List<Trade> selectByUserId(String userId);
-} 
-   
+    void insert(Trade trade);
+    Trade selectById(String tradeId);
+    Trade selectByIdWithUserAndCoin(String tradeId);
+    List<Trade> selectByUserId(String userId);
+}

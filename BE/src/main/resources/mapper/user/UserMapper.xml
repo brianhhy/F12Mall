@@ -7,6 +7,12 @@
         VALUES (#{userId}, #{name}, #{email}, #{username}, #{pwd}, #{image}, #{money}, #{createdAt}, #{updatedAt})
     </insert>
 
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.User">
+        SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
+        FROM USER
+        WHERE USER_ID = #{userId}
+    </select>
+
     <select id="selectByUsername" parameterType="String" resultType="com.avgmax.user.domain.User">
         SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
         FROM USER
@@ -18,5 +24,12 @@
         FROM USER
         WHERE USER_ID = #{userId}
     </select>
+    
+    <update id="updateMoney" parameterType="com.avgmax.user.domain.User">
+        UPDATE USER 
+        SET MONEY = #{money},
+            UPDATED_AT = NOW()
+        WHERE USER_ID = #{userId}
+    </update>
     
 </mapper>

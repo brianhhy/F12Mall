@@ -7,12 +7,12 @@ import lombok.Getter;
 @Builder
 public class UserLoginResponse {
     private boolean success;
-    private String sessionId;
+    private String userId;
 
-    public static UserLoginResponse of(Boolean success, String sessionId){
+    public static UserLoginResponse of(Boolean success, String userId){
         return UserLoginResponse.builder()
             .success(success)
-            .sessionId(sessionId)
+            .userId(userId)
             .build();
     }
 }

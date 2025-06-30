@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.domain.enums.OrderType;
-import com.avgmax.trade.domain.enums.StatusType;
+import com.avgmax.trade.domain.enums.TradeStatus;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class TradeUserCoinResponse {
     private OrderType orderType;
     private BigDecimal quantity;
     private BigDecimal unitPrice;
-    private StatusType status;
+    private TradeStatus status;
 
     public static TradeUserCoinResponse from(Trade trade){
         return TradeUserCoinResponse.builder()
