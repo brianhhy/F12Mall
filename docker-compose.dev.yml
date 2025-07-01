@@ -9,7 +9,7 @@ services:
   backend:
     build: ./BE
     ports:
-      - "8090:8080" # 접속 포트 변경 원할 경우 왼쪽 8080을 수정 (8090 등 원하는 포트로)
+      - "8080:8080" # 접속 포트 변경 원할 경우 왼쪽 8080을 수정 (8090 등 원하는 포트로)
     depends_on:
       - mariadb
     environment:
@@ -28,7 +28,7 @@ services:
       MARIADB_PASSWORD: HJH
       TZ: Asia/Seoul
     ports:
-      - "3308:3306"
+      - "3306:3306"
     networks:
       - backend
 
