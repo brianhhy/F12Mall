@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.avgmax.global.dto.SuccessResponse;
 import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.domain.enums.OrderType;
 import com.avgmax.trade.dto.request.TradeRequest;
@@ -12,6 +13,7 @@ import com.avgmax.trade.dto.response.TradeResponse;
 import com.avgmax.trade.mapper.TradeMapper;
 import com.avgmax.user.domain.User;
 import com.avgmax.global.exception.ErrorCode;
+import com.avgmax.trade.exception.TradeException;
 import com.avgmax.user.exception.UserException;
 import com.avgmax.user.mapper.UserMapper;
 
@@ -33,6 +35,15 @@ public class TradeService {
         }
         tradeMapper.insert(trade);
         return TradeResponse.from(trade);
+    }
+
+    @Transactional
+    public SuccessResponse cancelOrder(String userId, String coinId, String tradeId) {
+        Trade trade = tradeMapper.selectByTradeId(tradeId)
+            .orElseThrow(() -> TradeException.of(ErrorCode.TRADE_NOT_FOUND));
+        trade.validateOwnership(userId, coinId);
+        tradeMapper.delete(tradeId);
+        return SuccessResponse.of(true);
     }
 
     private User updateUserMoney(String userId, OrderType orderType, BigDecimal amount) {

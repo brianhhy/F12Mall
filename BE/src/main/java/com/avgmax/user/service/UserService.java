@@ -26,7 +26,7 @@ import com.avgmax.user.mapper.CareerMapper;
 import com.avgmax.user.mapper.EducationMapper;
 //import com.avgmax.user.mapper.ProfileMapper;
 import com.avgmax.user.mapper.UserSkillMapper;
-import com.avgmax.user.mapper.UserCoinMapper;
+import com.avgmax.trade.mapper.UserCoinMapper;
 import com.avgmax.user.mapper.CertificationMapper;
 import com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery;
 import com.avgmax.user.dto.response.UserCoinResponse;
