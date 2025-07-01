@@ -28,8 +28,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request, HttpSession session) {
-        log.info("로그인 시도: {}", request.getUserId());
-        UserLoginResponse response = authService.login(request.getUserId(), request.getPassword());
+        log.info("로그인 시도: {}", request.getUsername());
+        UserLoginResponse response = authService.login(request.getUsername(), request.getPassword());
         session.setAttribute("user", response.getUserId());
         return ResponseEntity.status(HttpStatus.OK)
             .body(response);
@@ -41,8 +41,40 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<UserLogoutResponse> logout(HttpSession session) {
+    public ResponseEntity<UserLogoutResponse> logout(HttpSession session, HttpServletResponse response) {
+        log.info("로그아웃 시도");
+        
         session.invalidate();
+        
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        
+        log.info("로그아웃 완료");
+        
         return ResponseEntity.status(HttpStatus.OK).body(UserLogoutResponse.of(true));
     }
+
+    @GetMapping("/check")
+    public ResponseEntity<String> checkSession(HttpSession session) {
+
+        String sessionId = session.getId();
+        log.info("현재 세션 ID: {}", sessionId);
+        
+        User user = (User) session.getAttribute("user");
+        
+        if (user != null) {
+            log.info("세션 유효 - 사용자: {}", user.getUsername());
+            return ResponseEntity.status(HttpStatus.OK)
+                .body("Session valid - User: " + user.getUsername() + ", SessionID: " + sessionId);
+        } else {
+            log.info("세션 없음 - SessionID: {}", sessionId);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body("No session - SessionID: " + sessionId);
+        }
+    }
+
+
 }
+

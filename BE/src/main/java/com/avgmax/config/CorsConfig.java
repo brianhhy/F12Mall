@@ -7,13 +7,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +25,7 @@ public class CorsConfig implements WebMvcConfigurer {
     // CORS 설정 상수
     private static final List<String> ALLOWED_ORIGINS = List.of(
         "http://localhost:3000",
-        "https://f12mall-dev.avgmax.team",
-        "https://f12mall.avgmax.team"
+        "https://f12mall-dev.avgmax.team"
     );
     
     private static final List<String> ALLOWED_METHODS = Arrays.asList(
@@ -51,6 +50,26 @@ public class CorsConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .cors().and()
+            .csrf().disable()
+            .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            .and()
+            .authorizeHttpRequests()
+                .requestMatchers("/auth/login", "/auth/signup", "/auth/logout", "/auth/check", "/login").permitAll()
+                .anyRequest().authenticated()
+            .and()
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
+        return http.build();
+    }
+
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = createCorsConfiguration();
         
@@ -71,22 +90,6 @@ public class CorsConfig implements WebMvcConfigurer {
         configuration.setMaxAge(MAX_AGE);
         
         return configuration;
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .cors().configurationSource(corsConfigurationSource()).and()
-            .csrf().disable()
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin().disable()
-            .httpBasic().disable();
-        
-        return http.build();
     }
 
     @Override
