@@ -18,12 +18,6 @@
         FROM USER
         WHERE USERNAME = #{username}
     </select>
-
-    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.User">
-        SELECT USER_ID, NAME, EMAIL, USERNAME, PWD, IMAGE, MONEY
-        FROM USER
-        WHERE USER_ID = #{userId}
-    </select>
     
     <update id="updateMoney" parameterType="com.avgmax.user.domain.User">
         UPDATE USER 

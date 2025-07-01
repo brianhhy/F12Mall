@@ -7,7 +7,13 @@
         VALUES (#{tradeId}, #{userId}, #{coinId}, #{orderType}, #{quantity}, #{unitPrice}, #{executedAt}, #{status}, #{createdAt}, #{updatedAt})
     </insert>
 
-    <select id="selectById" parameterType="string" resultType="com.avgmax.trade.domain.Trade">
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.trade.domain.Trade">
+        SELECT TRADE_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, EXECUTED_AT, STATUS, CREATED_AT, UPDATED_AT
+        FROM TRADE
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="selectByTradeId" parameterType="string" resultType="com.avgmax.trade.domain.Trade">
         SELECT TRADE_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, EXECUTED_AT, STATUS, CREATED_AT, UPDATED_AT
         FROM TRADE
         WHERE TRADE_ID = #{tradeId}
@@ -26,5 +32,9 @@
         LEFT JOIN COIN c ON t.COIN_ID = c.COIN_ID
         WHERE t.TRADE_ID = #{tradeId}
     </select>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM TRADE WHERE TRADE_ID = #{tradeId}
+    </delete>
 
 </mapper>
