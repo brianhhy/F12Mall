@@ -1,7 +1,5 @@
 package com.avgmax.user.domain;
 
-import java.util.UUID;
-
 import com.avgmax.global.base.BaseTimeEntity;
 
 import lombok.Builder;
@@ -12,7 +10,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserSkill extends BaseTimeEntity {
-    @Builder.Default
-    private String skillId = UUID.randomUUID().toString();
+    private String skillId;
     private String userId;
+
+    public static UserSkill of(String userId, String skillId){
+        return UserSkill.builder()
+            .skillId(skillId)
+            .userId(userId)
+            .build();
+    }
 }

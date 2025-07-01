@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.avgmax.user.dto.data.LinkData;
+import com.avgmax.user.dto.query.UserSkillWithSkillQuery;
 import com.avgmax.user.domain.User;
 import com.avgmax.user.domain.Career;
 import com.avgmax.user.domain.Education;
 import com.avgmax.user.domain.Certification;
 //import com.avgmax.user.domain.Profile;
-import com.avgmax.user.domain.UserSkill;
 
 import java.math.BigDecimal;
 
@@ -29,7 +29,7 @@ public class UserInformResponse {
     private String bio;
     private LinkData link; 
     private String resume;
-    private String[] stack;
+    private List<String> stack;
     private List<EducationResponse> education;
     private List<CareerResponse> career;
     private String[] certification;
@@ -40,7 +40,7 @@ public class UserInformResponse {
             List<Career> careerList, 
             List<Education> educationList, 
             List<Certification> certificationList,
-            List<UserSkill> userSkillList
+            List<UserSkillWithSkillQuery> userSkillList
         ){
             return UserInformResponse.builder()
                 .userId(user.getUserId())
@@ -67,7 +67,11 @@ public class UserInformResponse {
                         .map(Certification::getCertificateUrl)
                         .toArray(String[]::new)
                 )
-                // .stack(...)
+                .stack(
+                    userSkillList.stream()
+                        .map(UserSkillWithSkillQuery::getStack)
+                        .collect(Collectors.toList())
+                )
                 .build();
         }
 }

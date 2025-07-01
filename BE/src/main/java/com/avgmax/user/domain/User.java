@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.avgmax.global.base.BaseTimeEntity;
 import com.avgmax.global.exception.ErrorCode;
 import com.avgmax.user.exception.UserException;
+import com.avgmax.user.mapper.UserMapper;
 import com.avgmax.trade.domain.enums.OrderType;
 
 @Getter
@@ -64,6 +66,24 @@ public class User extends BaseTimeEntity  {
             deposit(amount);
         } else {
             throw UserException.of(ErrorCode.INVALID_ORDER_TYPE);
+        }
+    }
+
+    public void updateIfChanged(String name, String email, String username, String pwd, String image){
+        if (!Objects.equals(this.name, name)) {
+        this.name = name;
+        }
+        if (!Objects.equals(this.email, email)) {
+            this.email = email;
+        }
+        if (!Objects.equals(this.username, username)) {
+            this.username = username;
+        }
+        if (!Objects.equals(this.pwd, pwd)) {
+            this.pwd = pwd;
+        }
+        if (!Objects.equals(this.image, image)) {
+            this.image = image;
         }
     }
 }

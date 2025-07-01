@@ -12,4 +12,8 @@
         FROM CAREER
         WHERE USER_ID = #{userId}
     </select>
+
+    <delete id="deleteByUserId" parameterType="String">
+        DELETE FROM CAREER WHERE USER_ID = #{userId}
+    </delete>
 </mapper>

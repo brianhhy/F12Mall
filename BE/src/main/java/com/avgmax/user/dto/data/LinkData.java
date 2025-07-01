@@ -18,7 +18,7 @@ public class LinkData {
     private String linkedin;
 
     public static LinkData of(Profile profile){
-         return LinkData.builder()
+        return LinkData.builder()
                 .github(profile.getGithub())
                 .sns(profile.getSns())
                 .blog(profile.getBlog())

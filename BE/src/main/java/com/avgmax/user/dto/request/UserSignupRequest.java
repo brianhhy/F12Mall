@@ -41,13 +41,15 @@ public class UserSignupRequest {
     }
 
     public Profile toProfile(String userId){
-         return Profile.builder()
+        return Profile.builder()
                 .userId(userId)
                 .position(position)
                 .github(link.getGithub())
                 .sns(link.getSns())
                 .blog(link.getBlog())
                 .linkedin(link.getLinkedin())
+                .bio(bio)
+                .resume(resume)
                 .build();
     } 
 

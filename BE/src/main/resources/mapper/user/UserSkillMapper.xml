@@ -7,10 +7,23 @@
         VALUES (#{userId}, #{skillId}, #{createdAt}, #{updatedAt})
     </insert>
 
-    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.domain.UserSkill">
-        SELECT USER_ID, SKILL_ID
+    <select id="selectByStack" parameterType="list" resultType="java.lang.String">
+        SELECT STACK, SKILL_ID
+        FROM SKILL
+        WHERE STACK IN 
+        <foreach item="stack" collection="list" open="(" separator="," close=")">
+            #{stack}
+        </foreach>
+    </select>
+
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.dto.query.UserSkillWithSkill">
+        SELECT USER_SKILL.USER_ID AS userId, USER_SKILL.SKILL_ID as skillId, SKILL.STACK AS stack
         FROM USER_SKILL
+        JOIN SKILL ON USER_SKILL.SKILL_ID = SKILL.SKILL_ID
         WHERE USER_ID = #{userId}
     </select>
     
+    <delete id="deleteByUserId" parameterType="String">
+        DELETE FROM USER_SKILL WHERE USER_ID = #{userId}
+    </delete>
 </mapper>
