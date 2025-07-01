@@ -28,7 +28,7 @@ services:
       MARIADB_PASSWORD: HJH
       TZ: Asia/Seoul
     ports:
-      - "3307:3306"
+      - "3306:3306"
     networks:
       - backend
 

@@ -1,9 +1,17 @@
+import { CONFIG } from '/config.js';
+
+console.log(CONFIG.ENV);
+console.log(CONFIG.API_BASE_URL);
+
 const toNullIfEmpty = (value) => value.trim() === '' ? null : value;
 
-const API_SIGNUP_URL = 'http://localhost:8081/auth/signup';
-const API_LOGIN_URL = 'http://localhost:8081/auth/login';
+const API_SIGNUP_URL = `${CONFIG.API_BASE_URL}/auth/signup`;
+const API_LOGIN_URL = `${CONFIG.API_BASE_URL}/auth/login`;
 
 document.addEventListener('DOMContentLoaded', function() {
+    window.handleSignup = handleSignup;
+    window.handleLogin = handleLogin;
+
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', function(e) {
@@ -116,7 +124,7 @@ async function submitSignup(userData) {
         if (!response.ok) {
             const errorText = await response.text();
 
-            throw new Error(`요청 실패: ${response.status} ${response.statusText}`);
+            throw new Error(`요청 실패: ${response.status} ${response.statusText} ${errorText}`);
         }
         const data = await response.json();
 

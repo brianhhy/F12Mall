@@ -14,7 +14,8 @@
     <script src="/trade/js/trade.js"></script>
     <script src="/trade/js/profile.js"></script>
     <script src="/trade/js/live.js"></script>
-    <script src="/trade/js/chart.js"></script>
+    <script type="module" src="/trade/js/chartHook.js"></script>
+    <script type="module" src="/trade/js/chart.js"></script>
     <script src="/trade/js/interface.js"></script>
   </head>
   <body>
@@ -56,7 +57,15 @@
               </div>
             </div>
           </div>
-          <div class="container-chart">container-chart</div>
+          <div class="container-chart">
+            <div class="chart-header">
+              <button class="tab" id="chart-btn-day">일</button>
+              <button class="tab" id="chart-btn-week">주</button>
+              <button class="tab active" id="chart-btn-month">월</button>
+              <span class="chart-title">Trading Chart</span>
+            </div>
+            <canvas class="chart-canvas" id="trading-chart"></canvas>
+          </div>
         </div>
         <div class="section-right">
           <div class="container-interface buy-mode">
