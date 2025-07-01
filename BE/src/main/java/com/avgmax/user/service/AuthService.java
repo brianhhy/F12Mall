@@ -72,8 +72,8 @@ public class AuthService {
     }
 
     @Transactional(readOnly = true)
-    public UserLoginResponse login(String userId, String rawPassword) {
-        User user = userMapper.selectByUserId(userId)
+    public UserLoginResponse login(String username, String rawPassword) {
+        User user = userMapper.selectByUsername(username)
             .orElseThrow(() -> UserException.of(ErrorCode.USER_NOT_FOUND));
         user.validatePassword(rawPassword, passwordEncoder);
         return UserLoginResponse.of(true, user.getUserId());

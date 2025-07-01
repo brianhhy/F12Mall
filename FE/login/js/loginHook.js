@@ -118,6 +118,7 @@ async function submitSignup(userData) {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(userData)
         });
         
@@ -190,6 +191,7 @@ async function submitLogin(loginData) {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(loginData)
         });
         
@@ -199,8 +201,11 @@ async function submitLogin(loginData) {
         }
         
         const data = await response.json();
-
-        window.location.href = '/main/main.html';   // 수정 필요
+        
+        console.log('로그인 성공', data);
+        alert('로그인 성공');
+        
+        window.location.href = '/main/main.html';
         
     } catch (err) {
         console.error('로그인 실패:', err);
