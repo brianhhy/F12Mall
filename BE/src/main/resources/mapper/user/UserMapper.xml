@@ -26,4 +26,16 @@
         WHERE USER_ID = #{userId}
     </update>
     
+    <update id="update" parameterType="com.avgmax.user.domain.User">
+        UPDATE USER
+        <set>
+            NAME = #{name},
+            EMAIL = #{email},
+            USERNAME = #{username},
+            <if test="pwd != null"> PWD = #{pwd},
+            IMAGE = #{image}
+        </set> 
+        WHERE USER_ID = #{userId}
+    </update>
+    
 </mapper>

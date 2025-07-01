@@ -8,4 +8,5 @@ public interface UserMapper {
     public Optional<User> selectByUserId(String userId);
     public Optional<User> selectByUsername(String username);
     public int updateMoney(User user);
+    public void update(User user);
 }

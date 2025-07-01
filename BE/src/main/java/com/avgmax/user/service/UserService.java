@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-// import com.avgmax.user.domain.Profile;
 // import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.domain.enums.OrderType;
 import com.avgmax.trade.domain.enums.TradeStatus;
@@ -18,6 +17,7 @@ import com.avgmax.trade.mapper.TradeMapper;
 import com.avgmax.user.domain.Career;
 import com.avgmax.user.domain.Certification;
 import com.avgmax.user.domain.Education;
+//import com.avgmax.user.domain.Profile;
 import com.avgmax.user.domain.UserSkill;
 import com.avgmax.user.domain.User;
 
@@ -28,9 +28,16 @@ import com.avgmax.user.mapper.EducationMapper;
 import com.avgmax.user.mapper.UserSkillMapper;
 import com.avgmax.trade.mapper.UserCoinMapper;
 import com.avgmax.user.mapper.CertificationMapper;
+//import com.avgmax.user.dto.data.LinkData;
 import com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery;
+import com.avgmax.user.dto.query.UserSkillWithSkillQuery;
+import com.avgmax.user.dto.request.CareerRequest;
+import com.avgmax.user.dto.request.CertificationRequest;
+import com.avgmax.user.dto.request.EducationRequest;
+import com.avgmax.user.dto.request.UserProfileUpdateRequest;
 import com.avgmax.user.dto.response.UserCoinResponse;
 import com.avgmax.user.dto.response.UserInformResponse;
+import com.avgmax.user.dto.response.UserProfileUpdateResponse;
 
 import lombok.RequiredArgsConstructor;
 import com.avgmax.global.exception.ErrorCode;
@@ -48,7 +55,6 @@ public class UserService {
     private final UserCoinMapper userCoinMapper;
     private final TradeMapper tradeMapper;
 
-    //사용자 정보 조회 
     public UserInformResponse getUserInform(String userId){
         User user = userMapper.selectByUserId(userId)
             .orElseThrow(() -> UserException.of(ErrorCode.USER_NOT_FOUND));
@@ -56,23 +62,20 @@ public class UserService {
         List<Career> careerList = careerMapper.selectByUserId(userId);
         List<Education> educationList = educationMapper.selectByUserId(userId);
         List<Certification> certificationList = certificationMapper.selectByUserId(userId);
-        List<UserSkill> userSkillList = userSkillMapper.selectByUserId(userId);
+        List<UserSkillWithSkillQuery> userSkillList = userSkillMapper.selectByUserId(userId);
         
         return UserInformResponse.from(user, careerList, educationList, certificationList, userSkillList);
     }
 
-    //사용자 보유 코인 목록 조회
     public List<UserCoinResponse> getUserCoinList(String userId){
-        //거래내역 조회 -> DTO 변환
+        
         List<TradeUserCoinResponse> tradeResponses = tradeMapper.selectByUserId(userId).stream()
             .map(TradeUserCoinResponse::from)
             .collect(Collectors.toList());
 
-        //coinId로 거래들 묶음
         Map<String, List<TradeUserCoinResponse>> tradeMapByCoinId = tradeResponses.stream()
             .collect(Collectors.groupingBy(TradeUserCoinResponse::getCoinId));
 
-        //보유 코인 목록 조회
         List<UserCoinWithCoinWithCreatorQuery> userCoinQueries = userCoinMapper.selectByUserId(userId);
 
         List<UserCoinResponse> responses = userCoinQueries.stream()
@@ -102,12 +105,63 @@ public class UserService {
         return responses;
     }
 
+    public UserProfileUpdateResponse updateUserProfile(String userId, UserProfileUpdateRequest request){
+        User user = updateUser(userId, request.getName(), request.getEmail(), request.getUsername(), request.getPwd(), request.getImage());
+        userMapper.update(user);
+        
+        //Profile profile = updateProfile(userId, request.getBio(), request.getPosition(), request.getLink(), request.getResume());
+        //profileMapper.update(profile);
+        
+        List<CareerRequest> careerRequests = request.getCareer();
+        careerMapper.deleteByUserId(userId);
+        careerRequests.stream()
+            .map(careerRequest -> careerRequest.toEntity(userId))
+            .forEach(career -> careerMapper.insert(career));
+        
+        List<CertificationRequest> certificationRequests = request.getCertificateUrl();
+        careerMapper.deleteByUserId(userId);
+        certificationRequests.stream()
+            .map(certificationRequest -> certificationRequest.toEntity(userId))
+            .forEach(certification -> certificationMapper.insert(certification));
+        
+        List<EducationRequest> educationnRequests = request.getEducation();
+        educationMapper.deleteByUserId(userId);
+        educationnRequests.stream()
+            .map(educationRequest -> educationRequest.toEntity(userId))
+            .forEach(education -> educationMapper.insert(education));
+        
+        List<String> stackList = request.getStack();
+        List<String> skillIds = userSkillMapper.selectByStack(stackList);
+        List<UserSkill> userSkills = skillIds.stream()
+            .map(skillId -> UserSkill.of(userId, skillId))
+            .collect(Collectors.toList());
+        
+        userSkillMapper.deleteByUserId(userId);
+        userSkills.forEach(userSkillMapper::insert);
+
+        return UserProfileUpdateResponse.of(true);
+    }
+
+    private User updateUser(String userId, String name, String email, String username, String pwd, String image) {
+        User user = userMapper.selectByUserId(userId)
+            .orElseThrow(() -> UserException.of(ErrorCode.USER_NOT_FOUND));
+        user.updateIfChanged(name, email, username, pwd, image);
+        userMapper.update(user);
+        return user;
+    }
+
+    // private Profile updateProfile(String userId, String bio, String position, LinkData link, String resume){
+    //     Profile profile = profileMapper.selectByUserId(userId);
+    //     profile.updateIfChanged(position, bio, link, resume);
+    //     return profile;
+    // }
+
     private BigDecimal calculateHoldQuantity(List<TradeUserCoinResponse> trades){
         BigDecimal holdQuantity = trades.stream()
         .filter(trade -> trade.getStatus() == TradeStatus.COMPLETED)
         .map(trade -> 
             trade.getOrderType() == OrderType.SELL 
-                ? trade.getQuantity().negate() //SELL이면 음수로
+                ? trade.getQuantity().negate()
                 : trade.getQuantity())
         .reduce(BigDecimal.ZERO, BigDecimal::add);
 
@@ -126,12 +180,12 @@ public class UserService {
         return holdQuantity.subtract(lockedQuantity);
     }
 
-   private BigDecimal calculateTotalBuyAmount(List<TradeUserCoinResponse> trades) {
+    private BigDecimal calculateTotalBuyAmount(List<TradeUserCoinResponse> trades) {
         return trades.stream()
             .filter(trade ->
                 trade.getStatus() == TradeStatus.COMPLETED &&
                 trade.getOrderType() == OrderType.BUY)
-            .map(trade -> trade.getQuantity().multiply(trade.getUnitPrice())) // 수량 × 단가
+            .map(trade -> trade.getQuantity().multiply(trade.getUnitPrice()))
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

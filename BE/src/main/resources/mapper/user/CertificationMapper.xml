@@ -13,4 +13,7 @@
         WHERE USER_ID = #{userId}
     </select>
     
+    <delete id="deleteByUserId" parameterType="String">
+        DELETE FROM CERTIFICATION WHERE USER_ID = #{userId}
+    </delete>
 </mapper>

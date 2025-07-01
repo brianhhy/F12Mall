@@ -12,5 +12,18 @@
         FROM PROFILE
         WHERE USER_ID = #{userId}
     </select>
+
+    <update id="update" parameterType="com.avgmax.user.domain.Profile">
+        UPDATE PROFILE
+        SET
+            POSITION = #{position},
+            BIO = #{bio},
+            GITHUB = #{github}, 
+            BLOG = #{blog}, 
+            SNS = #{sns}, 
+            LINKEDIN = #{linkedin}, 
+            RESUME = #{resume}
+        WHERE USER_ID = #{userId}
+    </update>
     
 </mapper>
