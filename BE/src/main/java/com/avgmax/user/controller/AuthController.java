@@ -1,13 +1,19 @@
 package com.avgmax.user.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.avgmax.user.domain.User;
 
 import com.avgmax.user.dto.request.UserLoginRequest;
 import com.avgmax.user.dto.request.UserSignupRequest;
@@ -23,9 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+
 public class AuthController {
     private final AuthService authService;
-
+    
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request, HttpSession session) {
         log.info("로그인 시도: {}", request.getUsername());
@@ -55,26 +62,6 @@ public class AuthController {
         
         return ResponseEntity.status(HttpStatus.OK).body(UserLogoutResponse.of(true));
     }
-
-    @GetMapping("/check")
-    public ResponseEntity<String> checkSession(HttpSession session) {
-
-        String sessionId = session.getId();
-        log.info("현재 세션 ID: {}", sessionId);
-        
-        User user = (User) session.getAttribute("user");
-        
-        if (user != null) {
-            log.info("세션 유효 - 사용자: {}", user.getUsername());
-            return ResponseEntity.status(HttpStatus.OK)
-                .body("Session valid - User: " + user.getUsername() + ", SessionID: " + sessionId);
-        } else {
-            log.info("세션 없음 - SessionID: {}", sessionId);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body("No session - SessionID: " + sessionId);
-        }
-    }
-
 
 }
 
