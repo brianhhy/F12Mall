@@ -16,7 +16,7 @@
         </foreach>
     </select>
 
-    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.dto.query.UserSkillWithSkill">
+    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.dto.query.UserSkillWithSkillQuery">
         SELECT USER_SKILL.USER_ID AS userId, USER_SKILL.SKILL_ID as skillId, SKILL.STACK AS stack
         FROM USER_SKILL
         JOIN SKILL ON USER_SKILL.SKILL_ID = SKILL.SKILL_ID

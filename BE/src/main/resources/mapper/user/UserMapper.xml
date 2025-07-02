@@ -32,7 +32,7 @@
             NAME = #{name},
             EMAIL = #{email},
             USERNAME = #{username},
-            <if test="pwd != null"> PWD = #{pwd},
+            <if test="pwd != null"> PWD = #{pwd},</if>
             IMAGE = #{image}
         </set> 
         WHERE USER_ID = #{userId}
