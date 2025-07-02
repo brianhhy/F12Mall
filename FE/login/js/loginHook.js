@@ -1,3 +1,8 @@
+import { CONFIG } from '/config.js';
+
+console.log(CONFIG.ENV);
+console.log(CONFIG.API_BASE_URL);
+
 const toNullIfEmpty = (value) => value.trim() === '' ? null : value;
 
 const API_SIGNUP_URL = `${CONFIG.API_BASE_URL}/auth/signup`;
@@ -202,7 +207,7 @@ async function submitLogin(loginData) {
         console.log('로그인 성공', data);
         alert('로그인 성공');
         
-        window.location.href = '../main/';
+        window.location.href = '/main';
         
     } catch (err) {
         console.error('로그인 실패:', err);
