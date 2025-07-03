@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.avgmax.trade.dto.response.TradeFetchResponse;
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +60,11 @@ public class TradeController {
     @GetMapping("/{coinId}/chart")
     public ResponseEntity<List<ChartResponse>> getChartData(@PathVariable String coinId) {
         return ResponseEntity.ok(tradeService.getChartData(coinId));
+    }
+
+    // 실시간 코인 정보 조회
+    @GetMapping("/{coinId}")
+    public ResponseEntity<TradeFetchResponse> getTradeFetch(@PathVariable String coinId) {
+        return ResponseEntity.ok(tradeService.getTradeFetch(coinId));
     }
 }

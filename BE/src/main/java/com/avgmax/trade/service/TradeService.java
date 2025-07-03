@@ -5,6 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.avgmax.trade.dto.query.CoinWithCreatorWithProfileQuery;
+import com.avgmax.trade.dto.query.TradeGroupByCoinQuery;
+import com.avgmax.trade.dto.response.TradeFetchResponse;
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
+import com.avgmax.trade.mapper.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +23,10 @@ import com.avgmax.trade.dto.response.OrderResponse;
 import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import com.avgmax.trade.exception.TradeException;
 import com.avgmax.trade.mapper.CoinMapper;
-import com.avgmax.trade.mapper.OrderMapper;
 import com.avgmax.user.domain.User;
 import com.avgmax.user.exception.UserException;
 import com.avgmax.user.mapper.UserMapper;
 import com.avgmax.trade.dto.response.ChartResponse;
-import com.avgmax.trade.mapper.ClosingPriceMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +39,7 @@ public class TradeService {
     private final UserMapper userMapper;
     private final CoinMapper coinMapper;
     private final ClosingPriceMapper closingPriceMapper;
+    private final TradeMapper tradeMapper;
 
     @Transactional
     public OrderResponse createOrder(String userId, String coinId, OrderRequest request) {
@@ -84,5 +88,16 @@ public class TradeService {
     @Transactional(readOnly = true)
     public List<ChartResponse> getChartData(String coinId) {
         return ChartResponse.from(closingPriceMapper.selectBycoinIdDuring180(coinId));
+    }
+
+    @Transactional(readOnly = true)
+    public TradeFetchResponse getTradeFetch(String coinId) {
+        CoinWithCreatorWithProfileQuery coin = coinMapper.selectWithCreatorWithProfileById(coinId)
+                .orElseThrow(() -> UserException.of(ErrorCode.COIN_INFO_NOT_FOUND));
+
+        TradeGroupByCoinQuery tradeByCoin = tradeMapper.selectTradeGroupById(coinId)
+                .orElse(TradeGroupByCoinQuery.init(coinId));
+
+        return TradeFetchResponse.from(coin, tradeByCoin);
     }
 }
