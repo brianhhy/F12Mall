@@ -1,5 +1,7 @@
 package com.avgmax.user.service;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +12,7 @@ import com.avgmax.user.domain.User;
 import com.avgmax.user.dto.request.UserSignupRequest;
 import com.avgmax.user.dto.response.UserLoginResponse;
 import com.avgmax.user.dto.response.UserSignupResponse;
+import com.avgmax.user.dto.response.UsernameCheckResponse;
 import com.avgmax.user.exception.UserException;
 import com.avgmax.user.mapper.CareerMapper;
 import com.avgmax.user.mapper.CertificationMapper;
@@ -78,4 +81,11 @@ public class AuthService {
         user.validatePassword(rawPassword, passwordEncoder);
         return UserLoginResponse.of(true, user.getUserId());
     }
+
+    @Transactional(readOnly = true)
+    public UsernameCheckResponse isUsernameDuplicate(String username) {
+        Optional<User> existingUser = userMapper.selectByUsername(username);
+        return UsernameCheckResponse.of(existingUser.isPresent());
+    }
+
 }

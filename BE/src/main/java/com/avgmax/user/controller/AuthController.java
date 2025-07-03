@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -17,9 +18,11 @@ import com.avgmax.user.domain.User;
 
 import com.avgmax.user.dto.request.UserLoginRequest;
 import com.avgmax.user.dto.request.UserSignupRequest;
+import com.avgmax.user.dto.request.UsernameCheckRequest;
 import com.avgmax.user.dto.response.UserLoginResponse;
 import com.avgmax.user.dto.response.UserLogoutResponse;
 import com.avgmax.user.dto.response.UserSignupResponse;
+import com.avgmax.user.dto.response.UsernameCheckResponse;
 import com.avgmax.user.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -63,5 +66,11 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(UserLogoutResponse.of(true));
     }
 
-}
+    @PostMapping("/check-username")
+    public ResponseEntity<UsernameCheckResponse> checkUsernameDuplicate(@RequestBody UsernameCheckRequest request) {
+        log.info("Username 중복 확인: {}", request.getUsername());
+        UsernameCheckResponse response = authService.isUsernameDuplicate(request.getUsername());
+        return ResponseEntity.ok(response);
+    }
 
+}
