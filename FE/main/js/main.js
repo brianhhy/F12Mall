@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 인증 체크
-    checkAuthStatus();
 
     // Carousel Slide
     const carousel = document.querySelector(".carousel-track");
@@ -97,28 +95,3 @@ document.addEventListener("DOMContentLoaded", function () {
         viewList.addEventListener("change", toggleView);
     }
 });
-
-// 인증 상태 확인 함수
-async function checkAuthStatus() {
-    console.log('인증 체크 시작...');
-    try {
-        const response = await fetch('/api/auth/check', {
-            method: 'GET',
-            credentials: 'include' // 쿠키 포함
-        });
-        
-        console.log('인증 체크 응답:', response.status);
-        
-        if (response.status === 401) {
-            console.log('인증되지 않음 - 로그인 페이지로 리다이렉트');
-            // 인증되지 않은 경우 로그인 페이지로 리다이렉트
-            window.location.href = '/login';
-        } else if (response.status === 200) {
-            console.log('인증됨 - 페이지 접근 허용');
-        }
-    } catch (error) {
-        console.error('인증 체크 중 오류 발생:', error);
-        // 네트워크 오류 등이 발생한 경우에도 로그인 페이지로 리다이렉트
-        window.location.href = '/login';
-    }
-}
