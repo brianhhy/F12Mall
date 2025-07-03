@@ -2,13 +2,9 @@ package com.avgmax.trade.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.avgmax.global.dto.SuccessResponse;
 import com.avgmax.trade.dto.request.TradeRequest;
@@ -17,6 +13,8 @@ import com.avgmax.trade.service.TradeService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -39,5 +37,11 @@ public class TradeController {
         String userId = (String) session.getAttribute("user");
         log.info("DELETE 주문 취소: {}", userId);
         return ResponseEntity.ok(tradeService.cancelOrder(userId, coinId, tradeId));
+    }
+
+    // Top 5 Surging 조회
+    @GetMapping("/surging")
+    public ResponseEntity<List<TradeSurgingResponse>> getSurgingCoin() {
+        return ResponseEntity.ok(tradeService.getSurgingCoins());
     }
 }
