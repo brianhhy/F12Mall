@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.trade.mapper.ClosingPriceMapper">
+
+    <insert id="insert" parameterType="com.avgmax.trade.domain.ClosingPrice">
+        INSERT INTO CLOSING_PRICE (USER_COIN_ID, HOLDER_ID, COIN_ID, HOLD_QUANTITY, BUY_PRICE, CREATED_AT, UPDATED_AT)
+        VALUES (#{userCoinId}, #{holderId}, #{coinId}, #{holdQuantity}, #{buyPrice}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="selectBycoinId" parameterType="String" resultType="com.avgmax.trade.domain.ClosingPrice">
+        SELECT * FROM CLOSING_PRICE WHERE COIN_ID = #{coinId}
+    </select>
+
+    <select id="selectBycoinIdDuring180" parameterType="String" resultType="com.avgmax.trade.domain.ClosingPrice">
+        SELECT *
+        FROM CLOSING_PRICE
+        WHERE COIN_ID = #{coinId}
+        ORDER BY TRADE_DATE DESC 
+        LIMIT 180
+    </select>
+
+</mapper>
