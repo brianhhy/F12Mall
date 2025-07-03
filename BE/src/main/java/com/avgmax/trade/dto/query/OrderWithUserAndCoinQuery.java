@@ -1,7 +1,6 @@
 package com.avgmax.trade.dto.query;
 
 import com.avgmax.trade.domain.enums.OrderType;
-import com.avgmax.trade.domain.enums.TradeStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,14 +8,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class TradeWithUserAndCoinQuery {
-    // Trade 정보
-    private String tradeId;
+public class OrderWithUserAndCoinQuery {
+    // Order 정보
+    private String orderId;
     private OrderType orderType;
     private Integer quantity;
     private Double unitPrice;
-    private LocalDateTime executedAt;
-    private TradeStatus status;
+    private Double orderTotal;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -26,7 +24,7 @@ public class TradeWithUserAndCoinQuery {
     private String userEmail;
     private String userUsername;
     private String userPwd;
-    private String userImageUrl;
+    private String userImage;
     private Double userMoney;
 
     // Coin 정보

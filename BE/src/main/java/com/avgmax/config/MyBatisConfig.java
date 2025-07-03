@@ -14,7 +14,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.avgmax.trade.domain.enums.OrderType;
-import com.avgmax.trade.domain.enums.TradeStatus;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
@@ -70,7 +69,6 @@ public class MyBatisConfig {
     private void registerEnumTypeHandlers(TypeHandlerRegistry registry) {
         // 여기에 새로운 enum이 추가될 때마다 한 줄씩 추가
         registry.register(OrderType.class, new EnumTypeHandler<>(OrderType.class));
-        registry.register(TradeStatus.class, new EnumTypeHandler<>(TradeStatus.class));
     }
 
     @Bean

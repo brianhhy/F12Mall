@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.avgmax.global.dto.SuccessResponse;
-import com.avgmax.trade.domain.Trade;
+import com.avgmax.trade.domain.Order;
 import com.avgmax.trade.domain.enums.OrderType;
-import com.avgmax.trade.dto.request.TradeRequest;
-import com.avgmax.trade.dto.response.TradeResponse;
-import com.avgmax.trade.mapper.TradeMapper;
+import com.avgmax.trade.dto.request.OrderRequest;
+import com.avgmax.trade.dto.response.OrderResponse;
+import com.avgmax.trade.mapper.OrderMapper;
 import com.avgmax.user.domain.User;
 import com.avgmax.global.exception.ErrorCode;
 import com.avgmax.trade.exception.TradeException;
@@ -29,27 +29,35 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class TradeService {
-    private final TradeMapper tradeMapper;
+    private final OrderMapper orderMapper;
     private final UserMapper userMapper;
     private final CoinMapper coinMapper;
 
     @Transactional
-    public TradeResponse createOrder(String userId, String coinId, TradeRequest request) {
-        Trade trade = request.toEntity(userId, coinId);
+    public OrderResponse createOrder(String userId, String coinId, OrderRequest request) {
+        Order order = request.toEntity(userId, coinId);
         if (request.getOrderType() == OrderType.BUY) {
             updateUserMoney(userId, OrderType.BUY, request.getOrderTotal());
         }
-        tradeMapper.insert(trade);
-        return TradeResponse.from(trade);
+        orderMapper.insert(order);
+        return OrderResponse.from(order);
     }
 
     @Transactional
-    public SuccessResponse cancelOrder(String userId, String coinId, String tradeId) {
-        Trade trade = tradeMapper.selectByTradeId(tradeId)
-            .orElseThrow(() -> TradeException.of(ErrorCode.TRADE_NOT_FOUND));
-        trade.validateOwnership(userId, coinId);
-        tradeMapper.delete(tradeId);
+    public SuccessResponse cancelOrder(String userId, String coinId, String orderId) {
+        Order order = orderMapper.selectByOrderId(orderId)
+            .orElseThrow(() -> TradeException.of(ErrorCode.ORDER_NOT_FOUND));
+        order.validateOwnership(userId, coinId);
+        orderMapper.delete(orderId);
         return SuccessResponse.of(true);
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderResponse> getMyList(String userId, String coinId) {
+        List<Order> orders = orderMapper.selectAllByUserId(userId);
+        return orders.stream()
+            .map(OrderResponse::from)
+            .collect(Collectors.toList());
     }
 
     private User updateUserMoney(String userId, OrderType orderType, BigDecimal amount) {

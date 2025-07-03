@@ -1,4 +1,4 @@
-package com.avgmax.user.dto.query;
+package com.avgmax.trade.dto.query;
 
 import java.math.BigDecimal;
 
@@ -16,6 +16,8 @@ public class UserCoinWithCoinWithCreatorQuery {
     //Coin
     private String coinId;
     private String creatorId;
+    private BigDecimal coinCurrentPrice;
+    private BigDecimal coinClosingPrice;
     //Creator
     private String creatorName;
     private String creatorImage;

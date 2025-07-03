@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avgmax.trade.mapper.OrderMapper">
+
+    <insert id="insert" parameterType="com.avgmax.trade.domain.Order">
+        INSERT INTO `ORDER` (ORDER_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, ORDER_TOTAL, CREATED_AT, UPDATED_AT)
+        VALUES (#{orderId}, #{userId}, #{coinId}, #{orderType}, #{quantity}, #{unitPrice}, #{orderTotal}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="selectAllByUserId" parameterType="String" resultType="com.avgmax.trade.domain.Order">
+        SELECT ORDER_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, ORDER_TOTAL, CREATED_AT, UPDATED_AT
+        FROM `ORDER`
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="selectByOrderId" parameterType="string" resultType="com.avgmax.trade.domain.Order">
+        SELECT ORDER_ID, USER_ID, COIN_ID, ORDER_TYPE, QUANTITY, UNIT_PRICE, ORDER_TOTAL, CREATED_AT, UPDATED_AT
+        FROM `ORDER`
+        WHERE ORDER_ID = #{orderId}
+    </select>
+
+    <select id="selectByOrderIdWithUserAndCoin" parameterType="string" resultType="com.avgmax.trade.dto.query.OrderWithUserAndCoinQuery">
+        SELECT 
+            o.ORDER_ID, o.ORDER_TYPE, o.QUANTITY, o.UNIT_PRICE, o.ORDER_TOTAL, o.CREATED_AT, o.UPDATED_AT,
+            u.USER_ID, u.NAME as USER_NAME, u.EMAIL as USER_EMAIL, u.USERNAME as USER_USERNAME,
+            u.PWD as USER_PWD, u.IMAGE as USER_IMAGE, u.MONEY as USER_MONEY,
+            c.COIN_ID, c.CREATOR_ID as COIN_CREATOR_ID
+        FROM `ORDER` o
+        LEFT JOIN USER u ON o.USER_ID = u.USER_ID
+        LEFT JOIN COIN c ON o.COIN_ID = c.COIN_ID
+        WHERE o.ORDER_ID = #{orderId}
+    </select>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM `ORDER` WHERE ORDER_ID = #{orderId}
+    </delete>
+
+    <select id="selectAllByUserIdAndCoinId" resultType="com.avgmax.trade.domain.Order">
+        SELECT *
+        FROM `ORDER`
+        WHERE USER_ID = #{userId}
+        AND COIN_ID = #{coinId}
+    </select>
+
+</mapper>

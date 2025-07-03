@@ -1,8 +1,9 @@
 package com.avgmax.user.dto.response;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-import com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery;
+import com.avgmax.trade.dto.query.UserCoinWithCoinWithCreatorQuery;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,21 +11,41 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserCoinResponse {
-    private String coinId;
-    private String coinName;
-    private String creatorName;
-    private BigDecimal holdQuantity; //보유수량 = 보유수량 - 매도완료수량
-    private BigDecimal currentBuyAmount; //실시간 금액 * 보유 수량
-    private BigDecimal sellableQuantity; //매도 가능 수량 = 매도 가능 수량 - 매도중인수량
-    private BigDecimal buyPrice; //매수 시점 단가(평균)
-    private BigDecimal totalBuyAmount; //총매입금액 = 매도 가능 수량 * 매수 단가
-    private BigDecimal currentPrice; //현재 실시간 금액
-    private BigDecimal valuaionRate; //평가 손익
+    private String coinId; // coinId
+    private String coinName; // creatorUsername
+    private String creatorName; // creatorName
+    private BigDecimal holdQuantity; // 보유 수량 => holdQuantity
+    private BigDecimal currentBuyAmount; // 평가금액 => holdQuantity * coinCurrentPrice
+    private BigDecimal sellableQuantity; // 매도 가능 수량 => holdQuantity - SUM(ORDER QUANTITY) WHERE ORDER_TYPE = SELL
+    private BigDecimal buyPrice; // 매수 단가 => totalBuyAmount / holdQuantity
+    private BigDecimal totalBuyAmount; // 매수 금액 => totalBuyAmount
+    private BigDecimal currentPrice; // 현재가 => coinCurrentPrice
+    private BigDecimal valuationRate; // 수익률 => (currentPrice - buyPrice) / buyPrice * 100
 
-    public static UserCoinResponse.UserCoinResponseBuilder from(UserCoinWithCoinWithCreatorQuery userCoin){
+    public static UserCoinResponse from(UserCoinWithCoinWithCreatorQuery userCoin, BigDecimal sellingQuantity) {
+        BigDecimal buyPrice = userCoin.getHoldQuantity().compareTo(BigDecimal.ZERO) == 0 
+            ? BigDecimal.ZERO 
+            : userCoin.getTotalBuyAmount().divide(userCoin.getHoldQuantity(), 6, RoundingMode.HALF_UP);
+    
+        BigDecimal valuationRate = buyPrice.compareTo(BigDecimal.ZERO) == 0
+            ? BigDecimal.ZERO
+            : userCoin.getCoinCurrentPrice()
+                .subtract(buyPrice)
+                .divide(buyPrice, 6, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(2, RoundingMode.HALF_UP);
+    
         return UserCoinResponse.builder()
             .coinId(userCoin.getCoinId())
             .coinName(userCoin.getCreatorName())
-            .creatorName(userCoin.getCreatorUsername());
-    }
+            .creatorName(userCoin.getCreatorUsername())
+            .holdQuantity(userCoin.getHoldQuantity())
+            .currentBuyAmount(userCoin.getHoldQuantity().multiply(userCoin.getCoinCurrentPrice())) // SSE
+            .sellableQuantity(userCoin.getHoldQuantity().subtract(sellingQuantity))
+            .buyPrice(buyPrice)
+            .totalBuyAmount(userCoin.getTotalBuyAmount())
+            .currentPrice(userCoin.getCoinCurrentPrice()) // SSE
+            .valuationRate(valuationRate) // SSE
+            .build();
+    }    
 }

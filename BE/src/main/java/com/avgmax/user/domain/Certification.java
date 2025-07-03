@@ -12,8 +12,11 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Certification extends BaseTimeEntity {
+
     @Builder.Default
     private String certificationId = UUID.randomUUID().toString();
+    
     private String userId;
+
     private String certificateUrl;
 }
