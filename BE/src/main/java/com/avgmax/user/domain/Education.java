@@ -12,13 +12,21 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Education extends BaseTimeEntity {
+
     @Builder.Default
     private String educationId = UUID.randomUUID().toString();
+
     private String userId; 
+
     private String schoolName;
+
     private String status;
+
     private String major;
+
     private String startDate;
+
     private String endDate;
+    
     private String certificateUrl;
 }

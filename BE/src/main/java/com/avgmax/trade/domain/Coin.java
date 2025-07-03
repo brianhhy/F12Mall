@@ -22,7 +22,9 @@ public class Coin extends BaseTimeEntity {
 
     private String creatorId;
 
-    private BigDecimal currentPrice;
+    @Builder.Default
+    private BigDecimal currentPrice = new BigDecimal(1000);
 
-    private BigDecimal closingPrice;
+    @Builder.Default
+    private BigDecimal closingPrice = new BigDecimal(1000);
 }

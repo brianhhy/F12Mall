@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.avgmax.global.base.BaseTimeEntity;
 import com.avgmax.global.exception.ErrorCode;
 import com.avgmax.user.exception.UserException;
-import com.avgmax.user.mapper.UserMapper;
 import com.avgmax.trade.domain.enums.OrderType;
 
 @Getter
@@ -24,13 +23,18 @@ import com.avgmax.trade.domain.enums.OrderType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseTimeEntity  {
+
     @Builder.Default
     private String userId = UUID.randomUUID().toString();
 
     private String name;
+
     private String email;
+
     private String username;
+
     private String pwd;
+    
     private String image;
 
     @Builder.Default

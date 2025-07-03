@@ -3,8 +3,8 @@
 <mapper namespace="com.avgmax.trade.mapper.CoinMapper">
 
     <insert id="insert" parameterType="com.avgmax.trade.domain.Coin">
-        INSERT INTO COIN (COIN_ID, CREATOR_ID, CREATED_AT, UPDATED_AT)
-        VALUES (#{coinId}, #{creatorId}, #{createdAt}, #{updatedAt})
+        INSERT INTO COIN (COIN_ID, CREATOR_ID, CURRENT_PRICE, CLOSING_PRICE, CREATED_AT, UPDATED_AT)
+        VALUES (#{coinId}, #{creatorId}, #{currentPrice}, #{closingPrice}, #{createdAt}, #{updatedAt})
     </insert>
 
     <select id="selectById" parameterType="String" resultType="com.avgmax.trade.domain.Coin">

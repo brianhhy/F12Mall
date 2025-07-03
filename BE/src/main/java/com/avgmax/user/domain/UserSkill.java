@@ -10,7 +10,9 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserSkill extends BaseTimeEntity {
+
     private String skillId;
+    
     private String userId;
 
     public static UserSkill of(String userId, String skillId){

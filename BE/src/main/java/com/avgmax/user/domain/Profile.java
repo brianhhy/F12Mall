@@ -13,13 +13,21 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Profile extends BaseTimeEntity {
+
     private String userId;
+
     private String position;
+
     private String bio;
+
     private String github;
-    private String blog; 
+
+    private String blog;
+
     private String sns;
+
     private String linkedin;
+    
     private String resume;
 
     public void updateIfChanged(String position, String bio, LinkData link, String resume){

@@ -3,15 +3,15 @@
 <mapper namespace="com.avgmax.trade.mapper.UserCoinMapper">
 
     <insert id="insert" parameterType="com.avgmax.trade.domain.UserCoin">
-        INSERT INTO USER_COIN (USER_COIN_ID, HOLDER_ID, COIN_ID, HOLD_QUANTITY, BUY_PRICE, CREATED_AT, UPDATED_AT)
-        VALUES (#{userCoinId}, #{holderId}, #{coinId}, #{holdQuantity}, #{buyPrice}, #{createdAt}, #{updatedAt})
+        INSERT INTO USER_COIN (USER_COIN_ID, HOLDER_ID, COIN_ID, HOLD_QUANTITY, TOTAL_BUY_AMOUNT, CREATED_AT, UPDATED_AT)
+        VALUES (#{userCoinId}, #{holderId}, #{coinId}, #{holdQuantity}, #{totalBuyAmount}, #{createdAt}, #{updatedAt})
     </insert>
 
     <select id="selectByHolderIdAndCoinId" parameterType="String" resultType="com.avgmax.trade.domain.UserCoin">
         SELECT * FROM USER_COIN WHERE HOLDER_ID = #{holderId} AND COIN_ID = #{coinId}
     </select>
 
-    <select id="selectByUserId" parameterType="String" resultType="com.avgmax.user.dto.query.UserCoinWithCoinWithCreatorQuery">
+    <select id="selectAllByHolderId" parameterType="String" resultType="com.avgmax.trade.dto.query.UserCoinWithCoinWithCreatorQuery">
         SELECT 
         uc.USER_COIN_ID AS userCoinId, 
         uc.HOLDER_ID AS holderId, 
@@ -20,7 +20,9 @@
         
         c.COIN_ID AS coinId, 
         c.CREATOR_ID AS creatorId, 
-        
+        c.CURRENT_PRICE AS coinCurrentPrice, 
+        c.CLOSING_PRICE AS coinClosingPrice, 
+
         creator.NAME AS creatorName, 
         creator.IMAGE AS creatorImage, 
         creator.USERNAME AS creatorUsername 
@@ -30,7 +32,7 @@
             ON uc.COIN_ID = c.COIN_ID 
         JOIN USER creator 
             ON c.CREATOR_ID = creator.USER_ID 
-        WHERE uc.HOLDER_ID = #{userId}
+        WHERE uc.HOLDER_ID = #{holderId}
     </select>
 
 </mapper>

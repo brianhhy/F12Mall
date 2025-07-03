@@ -17,6 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserCoin extends BaseTimeEntity {
+    
     @Builder.Default
     private String userCoinId = UUID.randomUUID().toString();
 
@@ -28,5 +29,5 @@ public class UserCoin extends BaseTimeEntity {
     private BigDecimal holdQuantity = new BigDecimal(1000);
 
     @Builder.Default
-    private BigDecimal buyPrice = new BigDecimal(1000);
+    private BigDecimal totalBuyAmount = new BigDecimal(1000);
 }
