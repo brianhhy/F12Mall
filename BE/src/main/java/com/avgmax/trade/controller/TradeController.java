@@ -4,13 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.avgmax.global.dto.SuccessResponse;
 import com.avgmax.trade.dto.request.OrderRequest;
+import com.avgmax.trade.dto.response.ChartResponse;
 import com.avgmax.trade.dto.response.OrderResponse;
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import com.avgmax.trade.service.TradeService;
 
 import lombok.RequiredArgsConstructor;
@@ -51,5 +52,11 @@ public class TradeController {
     @GetMapping("/surging")
     public ResponseEntity<List<TradeSurgingResponse>> getSurgingCoin() {
         return ResponseEntity.ok(tradeService.getSurgingCoins());
+    }
+
+    // 차트 조회
+    @GetMapping("/{coinId}/chart")
+    public ResponseEntity<List<ChartResponse>> getChartData(@PathVariable String coinId) {
+        return ResponseEntity.ok(tradeService.getChartData(coinId));
     }
 }

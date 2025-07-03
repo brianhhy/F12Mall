@@ -153,7 +153,7 @@ function drawChart(options) {
     });
 
     // Y축 표시 (금액)
-    const allValues = chartOptions.chartRows.flatMap(row => [row.val_high, row.val_low]);
+    const allValues = chartOptions.chartRows.flatMap(row => [row.valHigh, row.valLow]);
     const rawMax = Math.max(...allValues);
     const rawMin = Math.min(...allValues);
 
@@ -247,7 +247,7 @@ function groupByStartOf(type, rows) {
     const grouped = new Map();
 
     rows.forEach(row => {
-        const date = new Date(row.chart_date);
+        const date = new Date(row.chartDate);
 
         let key;
         if (type === 'week') {
@@ -261,7 +261,7 @@ function groupByStartOf(type, rows) {
         } else if (type === 'month') {
             key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
         } else {
-            key = row.chart_date;
+            key = row.chartDate;
         }
 
         if (!grouped.has(key)) {
@@ -270,7 +270,7 @@ function groupByStartOf(type, rows) {
     });
 
     return Array.from(grouped.values())
-        .sort((a, b) => new Date(a.chart_date) - new Date(b.chart_date))
+        .sort((a, b) => new Date(a.chartDate) - new Date(b.chartDate))
         .slice(-6); // 최신 6개만
 }
 
@@ -280,10 +280,10 @@ function fetchAndRenderChart(allRows, type) {
     const filtered = groupByStartOf(type, allRows);
 
     chartOptions.chartRows = filtered;
-    chartOptions.labels = filtered.map(row => row.chart_date);
-    chartOptions.closeData = filtered.map(row => row.val_close);
-    chartOptions.highData = filtered.map(row => row.val_high);
-    chartOptions.lowData = filtered.map(row => row.val_low);
+    chartOptions.labels = filtered.map(row => row.chartDate);
+    chartOptions.closeData = filtered.map(row => row.valClose);
+    chartOptions.highData = filtered.map(row => row.valHigh);
+    chartOptions.lowData = filtered.map(row => row.valLow);
 
     const { min: yMin, max: yMax } = getMinMax([
         chartOptions.highData,
@@ -308,7 +308,8 @@ document.querySelectorAll('.chart-header .tab').forEach((btn) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const coinId = '1';  // 수정 필요
+    const params = new URLSearchParams(window.location.search);
+    const coinId = params.get('coinId');
 
     (async (coinId) => {
         const result = await getChartRows(coinId);

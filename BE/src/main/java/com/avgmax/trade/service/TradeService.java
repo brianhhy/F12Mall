@@ -5,22 +5,25 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.avgmax.trade.dto.response.TradeSurgingResponse;
-import com.avgmax.trade.mapper.CoinMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.avgmax.global.dto.SuccessResponse;
+import com.avgmax.global.exception.ErrorCode;
 import com.avgmax.trade.domain.Order;
+import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.domain.enums.OrderType;
 import com.avgmax.trade.dto.request.OrderRequest;
 import com.avgmax.trade.dto.response.OrderResponse;
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
+import com.avgmax.trade.exception.TradeException;
+import com.avgmax.trade.mapper.CoinMapper;
 import com.avgmax.trade.mapper.OrderMapper;
 import com.avgmax.user.domain.User;
-import com.avgmax.global.exception.ErrorCode;
-import com.avgmax.trade.exception.TradeException;
 import com.avgmax.user.exception.UserException;
 import com.avgmax.user.mapper.UserMapper;
+import com.avgmax.trade.dto.response.ChartResponse;
+import com.avgmax.trade.mapper.ClosingPriceMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +35,7 @@ public class TradeService {
     private final OrderMapper orderMapper;
     private final UserMapper userMapper;
     private final CoinMapper coinMapper;
+    private final ClosingPriceMapper closingPriceMapper;
 
     @Transactional
     public OrderResponse createOrder(String userId, String coinId, OrderRequest request) {
@@ -75,5 +79,10 @@ public class TradeService {
                 .sorted(Comparator.comparing(TradeSurgingResponse::getFluctuationRate).reversed())
                 .limit(5)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<ChartResponse> getChartData(String coinId) {
+        return ChartResponse.from(closingPriceMapper.selectBycoinIdDuring180(coinId));
     }
 }
