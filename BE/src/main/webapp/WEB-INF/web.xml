@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
 
-	<display-name>Spring MVC Project</display-name>
+	<display-name>Spring Framework Project</display-name>
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -36,6 +36,16 @@
 
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>authFilter</filter-name>
+		<filter-class>com.avgmax.global.filter.AuthFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>authFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
