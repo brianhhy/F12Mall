@@ -7,10 +7,12 @@ const toNullIfEmpty = (value) => value.trim() === '' ? null : value;
 
 const API_SIGNUP_URL = `${CONFIG.API_BASE_URL}/auth/signup`;
 const API_LOGIN_URL = `${CONFIG.API_BASE_URL}/auth/login`;
+const API_CHECK_USERNAME_URL = `${CONFIG.API_BASE_URL}/auth/check-username`;
 
 document.addEventListener('DOMContentLoaded', function() {
     window.handleSignup = handleSignup;
     window.handleLogin = handleLogin;
+    window.checkUsernameDuplicate = checkUsernameDuplicate;
 
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
@@ -30,7 +32,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // 중복확인 버튼에 이벤트 리스너 추가
+    const duplicateCheckBtn = document.querySelector('.id-check-btn');
+    if (duplicateCheckBtn) {
+        duplicateCheckBtn.addEventListener('click', checkUsernameDuplicate);
+    }
 });
+
+// 중복확인 함수
+async function checkUsernameDuplicate() {
+    const usernameInput = document.querySelector('.id-input');
+    const username = usernameInput.value.trim();
+    
+    if (!username) {
+        alert('아이디를 입력해주세요!');
+        usernameInput.focus();
+        return;
+    }
+    
+    try {
+        const response = await fetch(API_CHECK_USERNAME_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ username: username })
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            
+            if (result.isDuplicate) {
+                alert(result.message);
+                usernameInput.focus();
+            } else {
+                alert(result.message);
+            }
+        } else {
+            alert('중복확인 중 오류가 발생했습니다.');
+        }
+    } catch (error) {
+        console.error('중복확인 오류:', error);
+        alert('중복확인 중 오류가 발생했습니다.');
+    }
+}
 
 function handleSignup() {
     const username = document.querySelector('.id-input').value;

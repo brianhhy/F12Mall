@@ -1,9 +1,4 @@
-// CONFIG 객체가 정의되지 않은 경우를 대비한 기본값
-if (typeof CONFIG === 'undefined') {
-  const CONFIG = {
-    API_BASE_URL: 'http://localhost:8080'
-  };
-}
+import { CONFIG } from '/config.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   
@@ -45,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   if (response.ok) {
                     console.log("로그아웃 성공");
                     // 로그인 페이지로 리다이렉트
-                    window.location.href = "http://localhost:3001/login";
+                    window.location.href = "http://localhost:8080/login";
                   } else {
                     console.error("로그아웃 실패");
                     // 실패해도 로그인 페이지로 이동
@@ -61,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const mypageElement = document.querySelector(".mymenu");
           if (mypageElement) {
             mypageElement.addEventListener("click", () => {
-              window.location.href = "http://localhost:3001/mypage";
+              window.location.href = "http://localhost:8080/mypage";
             });
           }
         }
