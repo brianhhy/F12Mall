@@ -1,7 +1,12 @@
 package com.avgmax.trade.service;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.avgmax.trade.dto.response.TradeSurgingResponse;
+import com.avgmax.trade.mapper.CoinMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TradeService {
     private final TradeMapper tradeMapper;
     private final UserMapper userMapper;
+    private final CoinMapper coinMapper;
 
     @Transactional
     public TradeResponse createOrder(String userId, String coinId, TradeRequest request) {
@@ -54,4 +60,12 @@ public class TradeService {
         return user;
     }
 
+    @Transactional(readOnly = true)
+    public List<TradeSurgingResponse> getSurgingCoins() {
+        return coinMapper.selectAllWithCreator().stream()
+                .map(TradeSurgingResponse::from)
+                .sorted(Comparator.comparing(TradeSurgingResponse::getFluctuationRate).reversed())
+                .limit(5)
+                .collect(Collectors.toList());
+    }
 }

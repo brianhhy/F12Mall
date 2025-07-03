@@ -21,6 +21,7 @@ public class UserCoin extends BaseTimeEntity {
     private String userCoinId = UUID.randomUUID().toString();
 
     private String holderId;
+
     private String coinId;
 
     @Builder.Default

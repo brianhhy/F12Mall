@@ -1,5 +1,6 @@
 package com.avgmax.trade.domain;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.avgmax.global.base.BaseTimeEntity;
@@ -20,4 +21,8 @@ public class Coin extends BaseTimeEntity {
     private String coinId = UUID.randomUUID().toString();
 
     private String creatorId;
+
+    private BigDecimal currentPrice;
+
+    private BigDecimal closingPrice;
 }
