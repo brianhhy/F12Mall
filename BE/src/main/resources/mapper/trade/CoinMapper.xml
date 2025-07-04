@@ -38,4 +38,7 @@
         JOIN PROFILE p ON u.USER_ID = p.USER_ID
     </select>
 
+    <update id="updateCurrentPrice">
+        UPDATE COIN SET CURRENT_PRICE = #{currentPrice}, UPDATED_AT = NOW() WHERE COIN_ID = #{coinId}
+    </update>
 </mapper>

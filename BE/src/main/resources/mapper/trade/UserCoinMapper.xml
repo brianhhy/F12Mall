@@ -7,7 +7,13 @@
         VALUES (#{userCoinId}, #{holderId}, #{coinId}, #{holdQuantity}, #{totalBuyAmount}, #{createdAt}, #{updatedAt})
     </insert>
 
-    <select id="selectByHolderIdAndCoinId" parameterType="String" resultType="com.avgmax.trade.domain.UserCoin">
+    <update id="update" parameterType="com.avgmax.trade.domain.UserCoin">
+        UPDATE USER_COIN 
+        SET HOLD_QUANTITY = #{holdQuantity}, TOTAL_BUY_AMOUNT = #{totalBuyAmount}, UPDATED_AT = NOW()
+        WHERE USER_COIN_ID = #{userCoinId}
+    </update>
+
+    <select id="selectByHolderIdAndCoinId" resultType="com.avgmax.trade.domain.UserCoin">
         SELECT * FROM USER_COIN WHERE HOLDER_ID = #{holderId} AND COIN_ID = #{coinId}
     </select>
 

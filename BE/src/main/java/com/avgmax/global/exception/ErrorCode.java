@@ -23,7 +23,9 @@ public enum ErrorCode {
     ORDER_COIN_MISMATCH("주문와 코인 정보가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
 
     // coin
-    COIN_INFO_NOT_FOUND("코인 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
+    COIN_INFO_NOT_FOUND("코인 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+    INSUFFICIENT_COIN_QUANTITY("보유한 코인 수량이 부족합니다.", HttpStatus.BAD_REQUEST),
+    USER_COIN_NOT_FOUND("사용자 코인을 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
 
     private final String message;
     private final HttpStatus status;

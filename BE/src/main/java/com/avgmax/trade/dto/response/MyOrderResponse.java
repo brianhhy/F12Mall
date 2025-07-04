@@ -28,7 +28,7 @@ public class MyOrderResponse {
             .orderType(order.getOrderType().name())
             .quantity(order.getQuantity())
             .unitPrice(order.getUnitPrice())
-            .executeAmount(order.getOrderTotal())
+            .executeAmount(order.getOrderType().calculateExecuteAmount(order.getQuantity(), order.getUnitPrice()))
             .build();
     }
 }

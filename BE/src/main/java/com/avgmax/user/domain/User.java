@@ -38,7 +38,7 @@ public class User extends BaseTimeEntity  {
     private String image;
 
     @Builder.Default
-    private BigDecimal money = new BigDecimal(20000);
+    private BigDecimal money = new BigDecimal(120000);
 
     public void validatePassword(String rawPassword, PasswordEncoder encoder) {
         if (!encoder.matches(rawPassword, this.pwd)) {
@@ -47,14 +47,14 @@ public class User extends BaseTimeEntity  {
     }
 
     private void deposit(BigDecimal amount) {
-        if (amount.compareTo(BigDecimal.ZERO) <= 0 ) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0 ) {
             throw UserException.of(ErrorCode.INVALID_DEPOSIT_AMOUNT);
         }
         this.money = this.money.add(amount);
     }
 
     private void withdraw(BigDecimal amount) {
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw UserException.of(ErrorCode.INVALID_WITHDRAWAL_AMOUNT);
         }
         if (this.money.compareTo(amount) < 0) {
@@ -64,10 +64,10 @@ public class User extends BaseTimeEntity  {
     }
 
     public void processOrderAmount(OrderType orderType, BigDecimal amount) {
-        if (orderType == OrderType.BUY) {
-            withdraw(amount);
-        } else if (orderType == OrderType.SELL) {
+        if (orderType == OrderType.SELL) {
             deposit(amount);
+        } else if (orderType == OrderType.BUY) {
+            withdraw(amount);
         } else {
             throw UserException.of(ErrorCode.INVALID_ORDER_TYPE);
         }

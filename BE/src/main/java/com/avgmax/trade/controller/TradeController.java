@@ -6,14 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import com.avgmax.trade.dto.response.TradeFetchResponse;
 import com.avgmax.trade.dto.response.TradeSurgingResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.avgmax.global.dto.SuccessResponse;
 import com.avgmax.trade.dto.request.OrderRequest;
 import com.avgmax.trade.dto.response.ChartResponse;
 import com.avgmax.trade.dto.response.OrderResponse;
-import com.avgmax.trade.dto.response.TradeSurgingResponse;
 import com.avgmax.trade.service.TradeService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,15 +30,16 @@ public class TradeController {
     public ResponseEntity<OrderResponse> createOrder(HttpSession session, @PathVariable String coinId, @RequestBody OrderRequest request) {
         String userId = (String) session.getAttribute("user");
         log.info("POST 주문 요청: {}", userId);
-        return ResponseEntity.ok(tradeService.createOrder(userId, coinId, request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(tradeService.createOrder(userId, coinId, request));
     }
 
     // 주문 취소
     @DeleteMapping("/{coinId}/orders/{orderId}")
-    public ResponseEntity<SuccessResponse> cancelOrder(HttpSession session, @PathVariable String coinId, @PathVariable String orderId) {
+    public ResponseEntity<Void> cancelOrder(HttpSession session, @PathVariable String coinId, @PathVariable String orderId) {
         String userId = (String) session.getAttribute("user");
         log.info("DELETE 주문 취소: {}", userId);
-        return ResponseEntity.ok(tradeService.cancelOrder(userId, coinId, orderId));
+        tradeService.cancelOrder(userId, coinId, orderId);
+        return ResponseEntity.noContent().build();
     }
 
     // 내 주문 목록 조회
