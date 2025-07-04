@@ -37,8 +37,8 @@ public class UserCoinResponse {
     
         return UserCoinResponse.builder()
             .coinId(userCoin.getCoinId())
-            .coinName(userCoin.getCreatorName())
-            .creatorName(userCoin.getCreatorUsername())
+            .coinName(userCoin.getCreatorUsername())
+            .creatorName(userCoin.getCreatorName())
             .holdQuantity(userCoin.getHoldQuantity())
             .currentBuyAmount(userCoin.getHoldQuantity().multiply(userCoin.getCoinCurrentPrice())) // SSE
             .sellableQuantity(userCoin.getHoldQuantity().subtract(sellingQuantity))

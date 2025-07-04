@@ -7,6 +7,7 @@ import com.avgmax.trade.domain.Trade;
 import com.avgmax.trade.dto.query.TradeGroupByCoinQuery;
 
 public interface TradeMapper {
+    void insert(Trade trade);
     List<Trade> selectAllByUserId(String userId);
     Optional<Trade> selectByTradeId(String tradeId);
     Optional<Trade> selectByTradeIdWithUserAndCoin(String tradeId);

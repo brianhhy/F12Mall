@@ -20,7 +20,6 @@ public class OrderResponse {
     private OrderType orderType;
     private BigDecimal quantity;
     private BigDecimal unitPrice;
-    private BigDecimal orderTotal;
 
     public static OrderResponse from(Order order) {
         return OrderResponse.builder()
@@ -30,7 +29,6 @@ public class OrderResponse {
             .orderType(order.getOrderType())
             .quantity(order.getQuantity())
             .unitPrice(order.getUnitPrice())
-            .orderTotal(order.getOrderTotal())
             .build();
     }
 }

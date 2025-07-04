@@ -7,3 +7,4 @@ target
 .vscode
 application.yml
 config.js
+docker-compose.dev.yml

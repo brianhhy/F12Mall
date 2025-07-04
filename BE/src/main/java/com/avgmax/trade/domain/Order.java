@@ -35,8 +35,6 @@ public class Order extends BaseTimeEntity {
 
     private BigDecimal unitPrice;
 
-    private BigDecimal orderTotal;
-
     public void validateOwnership(String userId, String coinId) {
         if (!this.userId.equals(userId)) {
             throw TradeException.of(ErrorCode.ORDER_USER_MISMATCH);
@@ -44,5 +42,17 @@ public class Order extends BaseTimeEntity {
         if (!this.coinId.equals(coinId)) {
             throw TradeException.of(ErrorCode.ORDER_COIN_MISMATCH);
         }
+    }
+
+    public boolean isBuyOrder() {
+        return orderType == OrderType.BUY;
+    }
+
+    public boolean isSellOrder() {
+        return orderType == OrderType.SELL;
+    }
+
+    public void subtractQuantity(BigDecimal quantity) {
+        this.quantity = this.quantity.subtract(quantity);
     }
 }

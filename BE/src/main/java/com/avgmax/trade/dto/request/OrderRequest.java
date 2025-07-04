@@ -17,7 +17,6 @@ public class OrderRequest {
     private OrderType orderType;
     private BigDecimal orderFis;
     private BigDecimal orderPrice;
-    private BigDecimal orderTotal;
 
     public Order toEntity(String userId, String coinId) {
         return Order.builder()
@@ -26,7 +25,6 @@ public class OrderRequest {
             .orderType(this.orderType)
             .quantity(this.orderFis)
             .unitPrice(this.orderPrice)
-            .orderTotal(this.orderTotal)
             .build();
     }
 }
