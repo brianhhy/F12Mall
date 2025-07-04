@@ -9,4 +9,15 @@
         ORDER BY CREATED_AT DESC
     </select>
 
+    <select id="selectTradeGroupById" resultType="com.avgmax.trade.dto.query.TradeGroupByCoinQuery">
+        SELECT
+            COIN_ID,
+            SUM(QUANTITY) AS TRADE_VOLUME,
+            MIN(UNIT_PRICE) AS LOWEST_PRICE,
+            MAX(UNIT_PRICE) AS HIGHEST_PRICE
+        FROM TRADE
+        WHERE DATE(CREATED_AT) = DATE(NOW())
+        GROUP BY COIN_ID;
+    </select>
+
 </mapper>

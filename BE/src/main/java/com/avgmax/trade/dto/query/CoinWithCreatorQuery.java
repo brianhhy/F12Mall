@@ -13,5 +13,5 @@ public class CoinWithCreatorQuery {
     private BigDecimal closingPrice;
 
     // Creator 정보
-    private String creatorUserName;
+    private String creatorUsername;
 }

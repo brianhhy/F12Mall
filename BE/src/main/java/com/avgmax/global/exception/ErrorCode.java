@@ -20,7 +20,10 @@ public enum ErrorCode {
     INVALID_ORDER_TYPE("잘못된 주문 타입입니다.", HttpStatus.BAD_REQUEST),
     ORDER_NOT_FOUND("주문를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
     ORDER_USER_MISMATCH("해당 주문에 대한 권한이 없습니다.", HttpStatus.FORBIDDEN),
-    ORDER_COIN_MISMATCH("주문와 코인 정보가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+    ORDER_COIN_MISMATCH("주문와 코인 정보가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
+
+    // coin
+    COIN_INFO_NOT_FOUND("코인 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
 
     private final String message;
     private final HttpStatus status;
@@ -31,5 +34,4 @@ public enum ErrorCode {
     }
 
     public int getStatus() { return status.value(); }
-    public String getMessage() { return message; }
 }

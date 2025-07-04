@@ -16,7 +16,7 @@ public class TradeSurgingResponse {
 
     public static TradeSurgingResponse from(CoinWithCreatorQuery surging) {
         return TradeSurgingResponse.builder()
-                .coinName(surging.getCreatorUserName())
+                .coinName(surging.getCreatorUsername())
                 .fluctuationRate(
                         surging.getCurrentPrice()
                                .subtract(surging.getClosingPrice())
