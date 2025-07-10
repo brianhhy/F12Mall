@@ -99,6 +99,65 @@ function updateTechStackCounter(currentCount) {
     }
 }
 
+// 파일명 인코딩 함수
+function encodeFileName(fileName) {
+    return encodeURIComponent(fileName);
+}
+
+// 파일명 디코딩 함수 (표시용)
+function decodeFileName(encodedFileName) {
+    try {
+        return decodeURIComponent(encodedFileName);
+    } catch (error) {
+        console.error('파일명 디코딩 오류:', error);
+        return encodedFileName; // 디코딩 실패 시 원본 반환
+    }
+}
+
+// 안전한 파일명 생성 함수 (특수문자 제거)
+function sanitizeFileName(fileName) {
+    // 파일명에서 위험한 문자들을 제거하고 안전한 문자로 대체
+    return fileName
+        .replace(/[<>:"/\\|?*]/g, '_') // 특수문자를 언더스코어로 대체
+        .replace(/\s+/g, '_') // 공백을 언더스코어로 대체
+        .replace(/_{2,}/g, '_') // 연속된 언더스코어를 하나로 합치기
+        .trim();
+}
+
+// 업로드된 파일의 인코딩된 이름을 가져오는 헬퍼 함수
+function getEncodedFileName(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        return element.getAttribute('data-encoded-filename') || '';
+    }
+    return '';
+}
+
+// 업로드된 파일의 정제된 이름을 가져오는 헬퍼 함수
+function getSanitizedFileName(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        return element.getAttribute('data-sanitized-filename') || '';
+    }
+    return '';
+}
+
+// 서버 전송용 파일 정보를 가져오는 함수
+function getFileInfo() {
+    return {
+        resume: {
+            encoded: getEncodedFileName('resume-file-name'),
+            sanitized: getSanitizedFileName('resume-file-name'),
+            original: document.getElementById('resume-file-name')?.textContent || ''
+        },
+        certificate: {
+            encoded: getEncodedFileName('certificate-file-name'),
+            sanitized: getSanitizedFileName('certificate-file-name'),
+            original: document.getElementById('certificate-file-name')?.textContent || ''
+        }
+    };
+}
+
 // 프로필 이미지 미리보기 처리 함수
 function handleProfileImageUpload(event) {
     const file = event.target.files[0];
@@ -116,6 +175,116 @@ function handleProfileImageUpload(event) {
     } else if (file) {
         showFailAlert('이미지 파일만 업로드 가능합니다.');
         event.target.value = ''; // 파일 선택 초기화
+    }
+}
+
+// Resume 파일 업로드 처리 함수
+function handleResumeUpload(event) {
+    const file = event.target.files[0];
+    const fileNameElement = document.getElementById('resume-file-name');
+    const iconElement = document.querySelector('#resume-upload + .resume-upload-icon');
+    
+    if (file) {
+        if (file.type === 'application/pdf') {
+            // 안전한 파일명으로 변환
+            const sanitizedFileName = sanitizeFileName(file.name);
+            // 인코딩된 파일명 저장 (서버 전송용)
+            const encodedFileName = encodeFileName(sanitizedFileName);
+            
+            // 사용자에게는 원본 파일명 표시
+            fileNameElement.textContent = file.name;
+            fileNameElement.style.color = '#00ff2f';
+            
+            // 아이콘 숨기기
+            if (iconElement) {
+                iconElement.style.display = 'none';
+            }
+            
+            // 데이터 속성으로 인코딩된 파일명 저장 (폼 제출 시 사용)
+            fileNameElement.setAttribute('data-encoded-filename', encodedFileName);
+            fileNameElement.setAttribute('data-sanitized-filename', sanitizedFileName);
+            
+            console.log('Resume 파일 정보:', {
+                원본: file.name,
+                정제됨: sanitizedFileName,
+                인코딩됨: encodedFileName
+            });
+        } else {
+            showFailAlert('PDF 파일만 업로드 가능합니다.');
+            event.target.value = '';
+            fileNameElement.textContent = '';
+            fileNameElement.removeAttribute('data-encoded-filename');
+            fileNameElement.removeAttribute('data-sanitized-filename');
+            
+            // 아이콘 다시 보이기
+            if (iconElement) {
+                iconElement.style.display = 'flex';
+            }
+        }
+    } else {
+        fileNameElement.textContent = '';
+        fileNameElement.removeAttribute('data-encoded-filename');
+        fileNameElement.removeAttribute('data-sanitized-filename');
+        
+        // 아이콘 다시 보이기
+        if (iconElement) {
+            iconElement.style.display = 'flex';
+        }
+    }
+}
+
+// Certificate 파일 업로드 처리 함수
+function handleCertificateUpload(event) {
+    const file = event.target.files[0];
+    const fileNameElement = document.getElementById('certificate-file-name');
+    const iconElement = document.querySelector('#certificate-upload + .resume-upload-icon');
+    
+    if (file) {
+        if (file.type === 'application/pdf') {
+            // 안전한 파일명으로 변환
+            const sanitizedFileName = sanitizeFileName(file.name);
+            // 인코딩된 파일명 저장 (서버 전송용)
+            const encodedFileName = encodeFileName(sanitizedFileName);
+            
+            // 사용자에게는 원본 파일명 표시
+            fileNameElement.textContent = file.name;
+            fileNameElement.style.color = '#00ff2f';
+            
+            // 아이콘 숨기기
+            if (iconElement) {
+                iconElement.style.display = 'none';
+            }
+            
+            // 데이터 속성으로 인코딩된 파일명 저장 (폼 제출 시 사용)
+            fileNameElement.setAttribute('data-encoded-filename', encodedFileName);
+            fileNameElement.setAttribute('data-sanitized-filename', sanitizedFileName);
+            
+            console.log('Certificate 파일 정보:', {
+                원본: file.name,
+                정제됨: sanitizedFileName,
+                인코딩됨: encodedFileName
+            });
+        } else {
+            showFailAlert('PDF 파일만 업로드 가능합니다.');
+            event.target.value = '';
+            fileNameElement.textContent = '';
+            fileNameElement.removeAttribute('data-encoded-filename');
+            fileNameElement.removeAttribute('data-sanitized-filename');
+            
+            // 아이콘 다시 보이기
+            if (iconElement) {
+                iconElement.style.display = 'flex';
+            }
+        }
+    } else {
+        fileNameElement.textContent = '';
+        fileNameElement.removeAttribute('data-encoded-filename');
+        fileNameElement.removeAttribute('data-sanitized-filename');
+        
+        // 아이콘 다시 보이기
+        if (iconElement) {
+            iconElement.style.display = 'flex';
+        }
     }
 }
 
@@ -155,6 +324,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (profileUpload) {
         profileUpload.addEventListener('change', handleProfileImageUpload);
     }
+
+    // Back 버튼 이벤트 리스너 등록
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', toggleForms);
+    }
+
+    // Resume 파일 업로드 이벤트 리스너 등록
+    const resumeUpload = document.getElementById('resume-upload');
+    if (resumeUpload) {
+        resumeUpload.addEventListener('change', handleResumeUpload);
+    }
+
+    // Certificate 파일 업로드 이벤트 리스너 등록
+    const certificateUpload = document.getElementById('certificate-upload');
+    if (certificateUpload) {
+        certificateUpload.addEventListener('change', handleCertificateUpload);
+    }
 });
 
 // 아이디 중복 확인 처리 함수
@@ -185,5 +372,12 @@ async function handleUsernameDuplicateCheck() {
     }
 }
 
+// 전역 함수로 등록
 window.toggleForms = toggleForms;
 window.showRightSignup = showRightSignup;
+window.encodeFileName = encodeFileName;
+window.decodeFileName = decodeFileName;
+window.sanitizeFileName = sanitizeFileName;
+window.getEncodedFileName = getEncodedFileName;
+window.getSanitizedFileName = getSanitizedFileName;
+window.getFileInfo = getFileInfo;
